@@ -1,0 +1,10 @@
+[Unit]
+Description=Copiloto — lembrete de pendência da Assistente: diário 09h40 America/Sao_Paulo
+
+[Timer]
+# 12:40 UTC = 09:40 América/São_Paulo
+OnCalendar=*-*-* 12:40:00 UTC
+Persistent=false
+
+[Install]
+WantedBy=timers.target

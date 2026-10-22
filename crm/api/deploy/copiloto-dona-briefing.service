@@ -1,0 +1,38 @@
+[Unit]
+Description=Copiloto — Briefing noturno 20h pra Dona via Telegram
+After=copiloto-inspector.service
+Wants=network-online.target
+# Fix E1 (Revisão Fable etapa 4) — retry de falha de envio.
+# StartLimit* precisa ficar no [Unit]. Limita a 3 disparos por janela de 2h:
+# 1 execução original + 2 retries (30min de espaço entre eles via RestartSec).
+# Se estourar o burst, o systemd para de tentar (não fica em loop infinito).
+StartLimitIntervalSec=7200
+StartLimitBurst=3
+
+[Service]
+# ATENÇÃO — MUDANÇA vs unit instalado hoje:
+#   - Type mudou de `oneshot` para `exec`. `Restart=` é IGNORADO em Type=oneshot,
+#     então pra ter retry automático o serviço não pode ser oneshot. `exec` roda
+#     o script até ele sair e respeita Restart=on-failure.
+#   - Adicionados Restart=on-failure + RestartSec=1800 (retry ~30min após falha),
+#     limitados pelo StartLimitBurst=3 acima.
+# O anti-dobro em briefings_sent (fix E1 no código) garante que um retry NÃO
+# reenvia pro destinatário que já recebeu com sucesso — só re-tenta o que falhou.
+Type=exec
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+Environment=ANTHROPIC_API_KEY=
+Environment=DRY_RUN=false
+ExecStart=/opt/crm/scripts/dona_briefing_cron.sh
+Restart=on-failure
+RestartSec=1800
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=1800
+
+# NOTA DE INSTALAÇÃO (pra revisora):
+#   sudo cp deploy/copiloto-dona-briefing.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl restart copiloto-dona-briefing.timer   # timer já existe, inalterado
+#   (o service é disparado pelo timer; não precisa `enable` do service em si)

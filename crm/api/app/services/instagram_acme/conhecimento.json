@@ -1,0 +1,13 @@
+{
+  "versao": 1,
+  "fatos": [
+    {
+      "tema": "exemplo",
+      "texto": "Preencha com os fatos da sua empresa."
+    }
+  ],
+  "lacunas": [],
+  "nunca_afirmar": [
+    "Preços e prazos não confirmados"
+  ]
+}

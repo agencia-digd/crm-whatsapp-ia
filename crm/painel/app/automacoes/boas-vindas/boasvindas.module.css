@@ -1,0 +1,123 @@
+/* Boas-vindas: só o que é dela (as abas de linha e os cartões das versões do
+   teste A/B). O resto usa o CSS do remarketing, como as outras automações. */
+
+.btnMini {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 40px;
+  color: var(--ink);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+.btnMini:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btnMini:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btnMini:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.tab {
+  border: 1px solid var(--line);
+  background: var(--surface, #fff);
+  border-radius: 99px;
+  padding: 4px 13px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.tabOn {
+  background: var(--accent-soft, #e7f1ed);
+  border-color: #d5e6de;
+  color: #0a5c46;
+  font-weight: 700;
+}
+.tabSemLinha {
+  opacity: 0.65;
+}
+.variante {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  background: var(--surface, #fff);
+}
+.varianteOff {
+  opacity: 0.62;
+  border-style: dashed;
+}
+.varianteTopo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.varianteNome {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-1);
+}
+.hipotese {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 8px 0;
+}
+.editorArea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-1);
+  background: var(--surface, #fff);
+  resize: vertical;
+}
+.editorBarra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.editorMeta {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.selo {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  padding: 2px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.seloEditado {
+  color: #0a5c46;
+  background: #e7f1ed;
+}
+.seloEspera {
+  color: #7a4d00;
+  background: #fbf1e0;
+}
+
+@media (max-width: 820px) {
+  .btnMini { min-height: 44px; }
+  .tab { min-height: 44px; }
+}

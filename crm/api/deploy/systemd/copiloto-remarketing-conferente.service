@@ -1,0 +1,17 @@
+[Unit]
+Description=Copiloto — conferente do remarketing (fecha a conta do dia: previstos, aceitos, entregues, lidos, falhas, respostas; concilia reserva órfã). Não envia mensagem a lead.
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+# Só banco local: uma rodada leva segundos. O limite existe pra uma rodada
+# travada não segurar a próxima pra sempre (unit oneshot não roda em paralelo).
+TimeoutStartSec=300
+# O aviso no Telegram da Dona nasce DESLIGADO e NÃO se liga aqui: é a chave
+# `remarketing_conferente_avisa_telegram` em config_operacional (padrão false).
+# Sai com código 1 quando não conseguiu fechar a rodada — aparece em
+# `systemctl --failed`.
+ExecStart=/opt/crm/.venv/bin/python scripts/remarketing_conferente.py

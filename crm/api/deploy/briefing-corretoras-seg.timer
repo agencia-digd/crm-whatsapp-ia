@@ -1,0 +1,19 @@
+# Briefing das corretoras — PUSH de SEGUNDA (plano da semana), 08h Cidade.
+# Template UTILITY curto pela linha da Assistente (2955); briefing completo sai no
+# clique do botão. DESARMADO por padrão — armar SÓ com OK literal da Dona:
+#   systemctl enable briefing-corretoras-seg.timer   (SEM --now e SEM start!)
+#
+# Persistent=false DE PROPÓSITO: com true, enable/start tardio dispara o
+# service NA HORA (incidente 03/06 — briefing em dobro). Se perder uma segunda,
+# perdeu — melhor que mandar fora de hora.
+[Unit]
+Description=Copiloto — aviso de briefing SEGUNDA 08h pras corretoras (linha Assistente)
+
+[Timer]
+# 11:00 UTC = 08:00 America/Sao_Paulo
+OnCalendar=Mon *-*-* 11:00:00 UTC
+Persistent=false
+Unit=briefing-corretoras-seg.service
+
+[Install]
+WantedBy=timers.target

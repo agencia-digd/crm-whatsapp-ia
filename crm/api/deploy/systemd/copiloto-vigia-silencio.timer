@@ -1,0 +1,9 @@
+[Unit]
+Description=Vigia do silêncio — a cada 15 min, 8h–19h45 (SP = UTC-3)
+
+[Timer]
+OnCalendar=*-*-* 11..22:00/15:00 UTC
+Persistent=false
+
+[Install]
+WantedBy=timers.target

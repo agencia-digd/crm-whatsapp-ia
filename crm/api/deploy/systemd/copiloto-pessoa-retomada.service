@@ -1,0 +1,10 @@
+[Unit]
+Description=Copiloto — fila de retomada da Pessoa (turno sem LLM é retentado; linha Corretor)
+After=network.target contato@example.com
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+ExecStart=/opt/crm/.venv/bin/python scripts/pessoa_retomada_tick.py

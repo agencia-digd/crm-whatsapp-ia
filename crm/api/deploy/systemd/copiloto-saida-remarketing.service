@@ -1,0 +1,16 @@
+[Unit]
+Description=Copiloto — porta de saída do remarketing (respondeu => para a régua e volta pro funil principal)
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+# ATENÇÃO: entregue DESARMADO (19/09/2026). Este ExecStart é DRY-RUN — lê e
+# relata, não escreve. Pra ligar de verdade, DUAS coisas, nesta ordem:
+#   1. SAIDA_REMARKETING_ATIVA=1 no .env (ou a chave `saida_remarketing_ativa`
+#      no painel, quando ela entrar em config_operacional.DEFAULTS);
+#   2. trocar esta linha por `... saida_remarketing_tick.py --aplicar --limite 20`.
+# Sem o passo 1 o --aplicar se recusa a rodar e sai com código 2 — de propósito.
+ExecStart=/opt/crm/.venv/bin/python scripts/saida_remarketing_tick.py

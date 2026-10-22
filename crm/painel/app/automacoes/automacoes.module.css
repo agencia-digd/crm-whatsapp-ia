@@ -1,0 +1,377 @@
+/* ⚙️ Automações — mapa vivo da máquina (somente leitura). Design V2:
+   base areia, superfície branca, verde como único acento, mono nos labels. */
+
+.wrap { max-width: 920px; }
+
+/* ── balão WhatsApp (preview do que o lead VÊ de verdade) ── */
+.waFrame {
+  background: #efeae2;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  margin-top: 10px;
+  position: relative;
+}
+.waFrame::before {
+  content: "como o lead vê no WhatsApp";
+  display: block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.waBubble {
+  background: #d9fdd3;
+  color: #111b21;
+  border-radius: 8px 8px 2px 8px;
+  padding: 8px 10px 6px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+  max-width: 100%;
+}
+.waMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  align-items: center;
+}
+.waBtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.waBtn {
+  background: #fff;
+  border: 1px solid #d1d7db;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  color: #027eb5;
+  font-weight: 600;
+}
+.tabsCorretora {
+  display: flex;
+  gap: 6px;
+  margin: 10px 0 6px;
+  flex-wrap: wrap;
+}
+.tabCorretora {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--ink-2);
+}
+.tabCorretoraOn {
+  background: var(--accent-soft);
+  border-color: #d5e6de;
+  color: #0a5c46;
+  font-weight: 700;
+}
+
+.nota {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  background: var(--accent-soft);
+  border: 1px solid #d5e6de;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 24px;
+}
+
+.secao { margin-bottom: 36px; }
+.secaoTitulo {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.secaoDesc { font-size: 13px; color: var(--ink-2); margin-bottom: 14px; max-width: 640px; }
+
+/* ── lista de automações (cada linha abre a página da automação) ── */
+.listaAuto {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.autoItem + .autoItem { border-top: 1px solid var(--line-soft); }
+.autoLink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 13px 18px;
+  text-decoration: none;
+  color: inherit;
+}
+a.autoLink:hover { background: var(--accent-soft); }
+.autoLinkOff { cursor: default; }
+.autoNome { font-size: 14px; font-weight: 620; min-width: 160px; color: var(--ink); }
+.autoResumo { font-size: 12.5px; color: var(--ink-2); flex: 1; min-width: 200px; line-height: 1.5; }
+.autoDireita { display: inline-flex; align-items: center; gap: 10px; margin-left: auto; }
+.autoSeta { color: var(--accent); font-size: 15px; }
+.autoEmBreve {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* ── selo "última vez que disparou de verdade" ──
+   Fica ao lado do badge ligado/desligado de propósito: um diz o que a chave
+   está, o outro diz o que a automação está fazendo. */
+.envioOk,
+.envioAlerta,
+.envioSemDado {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+  cursor: help;
+}
+.envioOk {
+  color: var(--ink-2);
+  background: var(--line-soft);
+}
+/* âmbar = o mesmo tom das condições do canvas: exige olhar, não é erro. */
+.envioAlerta {
+  color: #7a4d00;
+  background: #fbf1e0;
+  border: 1px solid #f0e0bf;
+  font-weight: 700;
+}
+.envioSemDado {
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px dashed var(--line);
+}
+
+/* ── badges de estado (vivo) ── */
+.badge {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.badgeOn   { color: #0a5c46; background: #e7f1ed; }
+.badgeOff  { color: var(--ink-2); background: #efece6; }
+.badgeDry  { color: #9a5b00; background: #fbf1e0; }
+
+/* ── barra de operação ── */
+.opGrid { display: flex; gap: 10px; flex-wrap: wrap; }
+.opCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  min-width: 130px;
+}
+.opLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.opValor { font-size: 15px; font-weight: 700; }
+.opSub { font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
+
+/* ── gatilhos (QUANDO → ENTÃO) ── */
+.gatilho {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+}
+.gatilhoTopo { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.gatilhoQuando { font-size: 15px; }
+.gatilhoQuando strong {
+  font-size: 13px;
+  color: var(--accent);
+  margin-right: 8px;
+}
+.gatilhoEntao { font-size: 15px; margin-top: 6px; }
+.gatilhoEntao strong {
+  font-size: 13px;
+  color: #9a5b00;
+  margin-right: 8px;
+}
+.gatilhoDetalhe {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line-soft);
+}
+.gatilhoFlag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* ── timeline da cadência ── */
+.timeline { position: relative; padding-left: 22px; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.toque { position: relative; margin-bottom: 12px; }
+.toque::before {
+  content: "";
+  position: absolute;
+  left: -21px; top: 14px;
+  width: 12px; height: 12px;
+  border-radius: 99px;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+}
+.toqueLigacao::before { border-color: #c9c4b8; }
+.toqueCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+.toqueHead { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.toqueDia {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 34px;
+}
+.toqueTipo { font-size: 13px; font-weight: 600; }
+.tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  padding: 1px 7px;
+  border-radius: 99px;
+}
+.copy {
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-top: 8px;
+  line-height: 1.55;
+}
+.copyQuando {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 10px 0 -4px;
+}
+.ligacaoTexto { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; }
+
+/* ── edição de copy (personalizado vs padrão) ── */
+.badgeCustom { color: #7a4d00; background: #fbf1e0; }
+.copyBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.copyMeta { font-size: 11px; color: var(--ink-3); }
+.btnMini {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 3px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btnMini:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.btnMini:disabled { opacity: 0.5; cursor: default; }
+.btnSalvar { color: #0a5c46; background: #e7f1ed; border-color: #d5e6de; }
+.editor { margin-top: 8px; }
+.editorArea {
+  width: 100%;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 9px 12px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.editorArea:disabled { opacity: 0.6; }
+.copyPadraoRef {
+  font-size: 12px;
+  color: var(--ink-3);
+  border-left: 2px solid var(--line);
+  padding-left: 10px;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+.copyErro {
+  font-size: 12px;
+  color: #a33a2a;
+  background: #fbeae6;
+  border: 1px solid #f0d4cc;
+  border-radius: 7px;
+  padding: 6px 10px;
+  margin-top: 6px;
+}
+
+/* ── nutrição ── */
+.marco { display: flex; gap: 14px; margin-bottom: 10px; }
+.marcoEtapa {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 74px;
+  padding-top: 11px;
+}
+.marcoCard { flex: 1; }
+
+.rodape {
+  font-size: 12px;
+  color: var(--ink-3);
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
+  margin-top: 8px;
+}

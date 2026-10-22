@@ -1,0 +1,10 @@
+[Unit]
+Description=Check da transcrição a cada 20 min (8.308 áudios acumularam sem ninguém ver — 25/08/2026)
+
+[Timer]
+OnBootSec=12min
+OnUnitActiveSec=20min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

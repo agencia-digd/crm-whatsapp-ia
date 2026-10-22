@@ -1,0 +1,441 @@
+/* 👋 Meu dia — lista vertical, 5 filas. Zero board, zero gráfico.
+   Tokens de globals.css (areia / branco / verde de acento / mono nos dados).
+
+   A REGRA VISUAL desta tela: os cinco blocos NÃO têm o mesmo peso.
+   - o primeiro pendente é o herói da página (COMECE POR AQUI, número grande);
+   - os outros pendentes são linhas compactas;
+   - o zerado colapsa pra um ✓ discreto — fila limpa é boa notícia, não pode
+     disputar atenção com quem está esperando resposta;
+   - o erro é o único que ganha cor de alerta, porque "não sei" ≠ "está zerado".
+
+   O número é o herói DENTRO do bloco; a ordem (que vem pronta do backend, por
+   custo de demora) continua sendo quem manda na página. Bloco com 37 não sobe
+   na frente de um com 3 só por ser maior. */
+
+.wrap { max-width: 720px; }
+
+/* ── cabeçalho: nome da tela, dono e data em uma linha só ── */
+.cabeca { margin-bottom: 2px; }
+.titulo {
+  font-size: clamp(23px, 6vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.data {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: var(--ink-3);
+  text-transform: lowercase;
+}
+.sub { color: var(--ink-2); font-size: 13.5px; margin-bottom: 18px; }
+
+/* pills de pessoa (só admin) — controle secundário, não disputa com a fila */
+.pills {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 14px 0 4px;
+}
+.pill {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pillAtiva { border-color: var(--ink); background: var(--ink); color: #fff; }
+.pillNota {
+  flex-basis: 100%;
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+
+/* ── progresso: quantas filas já zeraram ──
+   É a única medida honesta de avanço aqui. "37 de quantos?" não tem resposta
+   estável — quantas das cinco filas estão limpas, tem. */
+.progresso { margin: 20px 0 14px; }
+.progressoCabeca {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.progressoTrilho {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+.progressoValor {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .progressoValor { transition: none; }
+}
+
+.lista { display: flex; flex-direction: column; gap: 8px; }
+
+.bloco {
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgb(30 25 18 / 7%);
+}
+
+/* ── o primeiro pendente: o herói da página ──
+   Sem vermelho de propósito. Escala, posição e a marca verde já dizem
+   "comece por aqui" — fundo de alerta todo dia de manhã cansa. */
+.prioritario {
+  position: relative;
+  border-color: var(--accent-soft);
+  background: linear-gradient(110deg, var(--accent-soft), var(--surface) 62%);
+  box-shadow: 0 8px 24px rgb(30 25 18 / 6%);
+}
+.prioritario::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+}
+.selo {
+  display: block;
+  padding: 12px 16px 0 19px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.prioritario .linha { min-height: 84px; padding-top: 6px; padding-left: 19px; }
+.prioritario .numero { font-size: clamp(38px, 9vw, 46px); line-height: 0.9; }
+.prioritario .rotulo { font-size: 16px; color: var(--ink); }
+
+.bloco.falhou {
+  border-color: #e7c9c5;
+  background: #fdf7f6;
+  box-shadow: none;
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 62px;
+  padding: 12px 16px;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.linha:disabled { cursor: default; }
+/* estado de toque no lugar de hover — a tela vive no celular */
+.linha:active:not(:disabled) { background: var(--line-soft); }
+@media (hover: hover) {
+  .linha:hover:not(:disabled) { background: var(--line-soft); }
+}
+
+/* O número comanda a leitura: coluna fixa, tabular, alinhado entre as linhas.
+   Sem o emoji na frente — ele roubava a primeira fixação do olho. */
+.numero {
+  flex: 0 0 clamp(50px, 13vw, 66px);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(26px, 6vw, 32px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+.rotulo { flex: 1; min-width: 0; font-size: 14.5px; line-height: 1.25; color: var(--ink-2); }
+.rotuloExtra { display: block; margin-top: 3px; font-size: 12px; color: var(--ink-3); }
+.rotuloErro { flex: 1; font-size: 13.5px; color: #9a3b32; }
+
+.chevron {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  color: var(--ink-3);
+}
+.chevronAberto { transform: rotate(45deg); }
+
+.acao {
+  flex-shrink: 0;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: var(--surface);
+  border-radius: 99px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+@media (hover: hover) {
+  .acao:hover { background: var(--accent); color: #fff; }
+}
+
+/* ── fila zerada: some da disputa ──
+   Vira uma linha de 44px com um ✓ — sem caixa, sem número grande, sem chevron.
+   Continua na tela (transparência: a fila existe e está limpa), mas em silêncio. */
+.bloco.zerado {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.zerado .linha { min-height: 44px; padding: 8px 16px; color: var(--ink-3); cursor: default; }
+.zerado .numero,
+.zerado .chevron,
+.zerado .acao { display: none; }
+.zerado .rotulo { font-size: 12.5px; color: var(--ink-3); display: flex; align-items: center; }
+.zerado .rotulo::before {
+  content: "✓";
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.zerado .rotuloExtra { display: none; }
+
+.detalhe { border-top: 1px solid var(--line-soft); padding: 4px 0; }
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 16px 11px 44px;
+  border-bottom: 1px solid var(--line-soft);
+  -webkit-tap-highlight-color: transparent;
+}
+.item:last-child { border-bottom: 0; }
+.item:active { background: var(--line-soft); }
+@media (hover: hover) {
+  .item:hover { background: var(--line-soft); }
+}
+.itemNome { font-size: 13.5px; font-weight: 600; flex-shrink: 0; }
+.itemCtx { font-size: 12.5px; color: var(--ink-2); flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.itemTempo {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+.itemCorretora {
+  font-size: 11px;
+  color: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 0 7px;
+  flex-shrink: 0;
+}
+.maisItens { padding: 10px 16px 12px 44px; font-size: 12.5px; color: var(--ink-3); }
+.nota { padding: 8px 16px 12px 44px; font-size: 12px; color: var(--ink-3); }
+
+.avisoErro {
+  margin-top: 14px;
+  padding: 11px 14px;
+  border: 1px solid #e7c9c5;
+  background: #fdf7f6;
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: #9a3b32;
+}
+/* O detalhe técnico da falha não some (dev precisa), mas não estraga a tela
+   da corretora com um erro de HTTP no meio da manhã. */
+.detalheTecnico { margin-top: 6px; font-size: 11.5px; color: var(--ink-3); }
+.detalheTecnico summary { cursor: pointer; }
+
+/* ── tudo em dia ── */
+.limpo {
+  margin-top: 18px;
+  padding: 34px 20px;
+  text-align: center;
+  border: 1px solid var(--accent-soft);
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+}
+.limpoGlifo {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 800;
+}
+.limpoTitulo { font-size: 18px; font-weight: 700; margin-top: 12px; }
+.limpoSub { font-size: 13.5px; color: var(--ink-2); margin-top: 5px; }
+
+.rodape {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--ink-3);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btnRecarregar {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 99px;
+  padding: 7px 13px;
+  font-size: 12px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .btnRecarregar:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+/* ── celular ──
+   O detalhe em quatro colunas não sobrevive a 360px: vira grade de 2 linhas,
+   nome e tempo em cima, o resto embaixo. Zero rolagem horizontal. */
+@media (max-width: 560px) {
+  .wrap { max-width: none; width: 100%; }
+  .lista { gap: 6px; }
+  .item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3px 10px;
+    padding: 12px 16px;
+    min-height: 56px;
+    align-items: center;
+  }
+  .itemNome { grid-column: 1; grid-row: 1; font-size: 14px; }
+  .itemTempo { grid-column: 2; grid-row: 1; }
+  .itemCtx { grid-column: 1 / -1; grid-row: 2; white-space: normal;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .itemCorretora { grid-column: 1 / -1; justify-self: start; margin-top: 3px; }
+  .maisItens, .nota { padding-inline: 16px; }
+}
+
+/* ── confete (sem lib: divs caindo) ──
+   Mesma técnica da janela de ligação (app/tarefas/ligacoes.module.css) — CSS
+   puro, respeita prefers-reduced-motion. A diferença é o que ele premia: lá,
+   cumprir a cota de ligação; aqui, NÃO DEIXAR NINGUÉM ESPERANDO. */
+.confete {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 60;
+}
+.confeteItem {
+  position: absolute;
+  top: -12px;
+  width: 9px;
+  height: 14px;
+  border-radius: 2px;
+  animation: confeteCai linear forwards;
+}
+@keyframes confeteCai {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .confeteItem { animation-duration: 0.01ms !important; opacity: 0; }
+}
+
+/* "✓ feito" — saída pra quando quem encerrou a conversa foi o CLIENTE. Discreto
+   de propósito: o gesto principal do item continua sendo abrir o Chat. */
+.itemFeito {
+  font: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 2px 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.itemFeito:hover:not(:disabled) {
+  color: #0a5c46;
+  border-color: #0a5c46;
+  background: rgba(10, 92, 70, 0.06);
+}
+.itemFeito:disabled { opacity: 0.5; cursor: default; }
+
+/* Lembrete do CRM — o Meu dia diz o que fazer agora; o CRM é onde isso vira
+   verdade pro resto do time. Discreto durante o trabalho, em destaque quando o
+   dia zera (aí ele é o próximo passo, não um aviso a mais). */
+.lembreteCrm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+.lembreteCrmForte {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.lembreteIcone { font-size: 20px; line-height: 1; flex-shrink: 0; }
+.lembreteTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.lembreteTexto strong { font-size: 13.5px; }
+.lembreteTexto span { font-size: 12.5px; color: var(--ink-2); }
+.lembreteBotao {
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 7px 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.lembreteBotao:hover { opacity: 0.9; }
+
+@media (max-width: 560px) {
+  .lembreteCrm { flex-wrap: wrap; }
+  .lembreteBotao { width: 100%; }
+}

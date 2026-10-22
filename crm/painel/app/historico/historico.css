@@ -1,0 +1,59 @@
+/* 📈 Histórico anual — tabela portada do V1 (classes vg-tabela do
+   dash-imobiliaria) na mesma linguagem da Visão do V2. Escopo ht-* pra
+   não colidir com visao.css/ranking.css no bundle. */
+
+.ht { flex: 1; overflow-y: auto; padding: 22px 26px 60px; background: #f6f4ef; min-height: 100%; }
+
+.ht-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.ht-kick { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: #8a857c; font-weight: 700; }
+.ht-titulo { font-size: 26px; font-weight: 800; color: #15110d; margin: 2px 0 4px; }
+.ht-sub { font-size: 13px; color: #8a857c; max-width: 560px; margin: 0; }
+.ht-acoes { display: flex; gap: 8px; align-items: center; }
+.ht-ano { padding: 8px 12px; border-radius: 10px; border: 1px solid #e3ddd2; background: #fff; font-size: 13px; color: #2b2620; cursor: pointer; }
+.ht-reload { padding: 8px 12px; border-radius: 10px; border: 1px solid #e3ddd2; background: #fff; font-size: 14px; color: #2b2620; cursor: pointer; }
+.ht-reload:disabled { opacity: .5; cursor: default; }
+.ht-loading { padding: 40px; color: #8a857c; font-size: 13px; background: #fff; border: 1px solid #eee; border-radius: 12px; text-align: center; }
+.ht-vazio { color: #999; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 30px; text-align: center; margin-top: 14px; }
+
+/* KPIs do ano (mesma família vg-kpi da Visão) */
+.ht-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 14px; }
+.ht-kpi { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 16px 18px; }
+.ht-kpi.dark { background: #221f1a; border-color: #221f1a; }
+.ht-kpi.accent { background: linear-gradient(135deg, #E8720C, #c85e08); border-color: #E8720C; }
+.ht-kpi-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: #8a857c; font-weight: 700; }
+.ht-kpi.dark .ht-kpi-lbl, .ht-kpi.accent .ht-kpi-lbl { color: rgba(255,255,255,.7); }
+.ht-kpi-val { font-size: 26px; font-weight: 800; color: #15110d; margin-top: 4px; line-height: 1.1; }
+.ht-kpi.dark .ht-kpi-val, .ht-kpi.accent .ht-kpi-val { color: #fff; }
+.ht-kpi-sub { font-size: 11.5px; color: #8a857c; margin-top: 4px; }
+.ht-kpi.dark .ht-kpi-sub, .ht-kpi.accent .ht-kpi-sub { color: rgba(255,255,255,.75); }
+
+/* Gráfico VGV mês a mês — barras verticais CSS */
+.ht-graf { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; }
+.ht-graf-head h3 { font-size: 15px; font-weight: 800; color: #15110d; margin: 0 0 14px; }
+.ht-graf-bars { display: flex; align-items: flex-end; gap: 10px; height: 130px; }
+.ht-graf-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+.ht-graf-bar { width: 100%; max-width: 42px; background: linear-gradient(180deg, #E8720C, #c85e08); border-radius: 6px 6px 0 0; min-height: 2px; position: relative; }
+.ht-graf-bar span { position: absolute; top: -17px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 800; color: #15110d; white-space: nowrap; }
+.ht-graf-col.zero .ht-graf-bar { background: #e3ddd2; }
+.ht-graf-mes { font-size: 9.5px; color: #8a857c; font-family: ui-monospace, monospace; white-space: nowrap; }
+
+/* Tabela anual (porte da vg-tabela do V1) */
+.ht-tabela-wrap { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; overflow: auto; }
+.ht-tabela { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ht-tabela th { text-align: right; padding: 11px 12px; background: #faf8f4; color: #8a857c; font-size: 11px; text-transform: uppercase; letter-spacing: .4px; border-bottom: 1px solid #efece5; white-space: nowrap; }
+.ht-tabela th:first-child, .ht-tabela td:first-child { text-align: left; }
+.ht-tabela td { text-align: right; padding: 11px 12px; border-bottom: 1px solid #f4f1ea; color: #2b2620; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ht-tabela tr:last-child td { border-bottom: none; }
+.ht-corr { font-weight: 700; color: #15110d; }
+.ht-mes { cursor: pointer; }
+.ht-mes:hover td { background: #faf8f4; }
+.ht-mes.on td { background: #faf5e9; }
+.ht-total td { font-weight: 800; background: #faf8f4; }
+
+/* Breakdown por corretora (linha expandida) */
+.ht-detalhe > td { background: #fdfcf9; padding: 8px 16px 16px; }
+.ht-subtabela { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.ht-subtabela th { text-align: right; padding: 7px 10px; color: #8a857c; font-size: 10px; text-transform: uppercase; letter-spacing: .4px; border-bottom: 1px solid #efece5; }
+.ht-subtabela th:first-child, .ht-subtabela td:first-child { text-align: left; }
+.ht-subtabela td { text-align: right; padding: 7px 10px; border-bottom: 1px solid #f4f1ea; color: #2b2620; font-variant-numeric: tabular-nums; }
+.ht-subtabela tr:last-child td { border-bottom: none; }

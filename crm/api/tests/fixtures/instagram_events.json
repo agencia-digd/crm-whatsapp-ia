@@ -1,0 +1,278 @@
+{
+  "_leia_antes": [
+    "Payloads SINTÉTICOS, no formato real observado em 21/09/2026 nos eventos que",
+    "o painel-corretor já recebe da Meta para a conta 000000000000000. Nenhum texto,",
+    "username ou IGSID de pessoa real aparece aqui: os autores são IGSID-EXEMPLO-n",
+    "e os textos foram escritos para o teste.",
+    "",
+    "O detalhe que veio do mundo real e não da documentação: o `value` do campo",
+    "`comments` chega SEM timestamp. O relógio do evento cai para `entry[].time`,",
+    "que é quando a Meta montou a entrega — não quando a pessoa comentou. A janela",
+    "de private reply é de 7 dias contados da CRIAÇÃO, então a tarefa 4 precisa",
+    "confirmar esse timestamp na Graph antes de decidir DM.",
+    "",
+    "Fixture não prova cobertura da conta: prova o formato que o código trata."
+  ],
+  "conta_acme": "000000000000000",
+  "conta_terceira": "000000000000000",
+  "comentario_dark_ad": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934000,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-EXEMPLO-0001",
+              "from": {"id": "IGSID-EXEMPLO-1", "username": "perfil_exemplo_1"},
+              "text": "quero conhecer",
+              "media": {"id": "MEDIA-EXEMPLO-A", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "comentario_com_ad_id": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934100,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-EXEMPLO-0002",
+              "from": {"id": "IGSID-EXEMPLO-2", "username": "perfil_exemplo_2"},
+              "text": "fica em qual bairro?",
+              "ad_id": "AD-EXEMPLO-77",
+              "media": {"id": "MEDIA-EXEMPLO-A", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "resposta_em_thread": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934200,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-EXEMPLO-0003",
+              "parent_id": "CID-EXEMPLO-0001",
+              "from": {"id": "IGSID-EXEMPLO-1", "username": "perfil_exemplo_1"},
+              "text": "ainda tem disponível?",
+              "media": {"id": "MEDIA-EXEMPLO-A", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "eco_comentario_da_casa": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934300,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-EXEMPLO-0004",
+              "parent_id": "CID-EXEMPLO-0001",
+              "from": {"id": "000000000000000", "username": "acme_imoveis"},
+              "text": "te chamamos no direct",
+              "media": {"id": "MEDIA-EXEMPLO-A", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "comentario_sem_media": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934400,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-EXEMPLO-0005",
+              "from": {"id": "IGSID-EXEMPLO-3", "username": "perfil_exemplo_3"},
+              "text": "sem mídia no payload"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "campo_nao_tratado": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934500,
+        "changes": [
+          {"field": "mentions", "value": {"media_id": "MEDIA-EXEMPLO-A", "comment_id": "CID-EXEMPLO-0006"}}
+        ]
+      }
+    ]
+  },
+  "mensagem_recebida": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934600,
+        "messaging": [
+          {
+            "sender": {"id": "IGSID-EXEMPLO-4"},
+            "recipient": {"id": "000000000000000"},
+            "timestamp": 1789934650076,
+            "message": {"mid": "MID-EXEMPLO-0001", "text": "oi, vi o anúncio"}
+          }
+        ]
+      }
+    ]
+  },
+  "mensagem_resposta_a_story": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934700,
+        "messaging": [
+          {
+            "sender": {"id": "IGSID-EXEMPLO-5"},
+            "recipient": {"id": "000000000000000"},
+            "timestamp": 1789934700512,
+            "message": {
+              "mid": "MID-EXEMPLO-0002",
+              "reply_to": {"story": {"id": "STORY-EXEMPLO-1", "url": "https://exemplo.invalido/story"}}
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "eco_mensagem_da_casa": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934800,
+        "messaging": [
+          {
+            "sender": {"id": "000000000000000"},
+            "recipient": {"id": "IGSID-EXEMPLO-4"},
+            "timestamp": 1789934800000,
+            "message": {"mid": "MID-EXEMPLO-0003", "text": "bom dia!", "is_echo": true}
+          }
+        ]
+      }
+    ]
+  },
+  "reacao_nao_e_mensagem": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789934900,
+        "messaging": [
+          {
+            "sender": {"id": "IGSID-EXEMPLO-4"},
+            "recipient": {"id": "000000000000000"},
+            "timestamp": 1789934900000,
+            "reaction": {"mid": "MID-EXEMPLO-0001", "action": "react", "emoji": "❤️"}
+          }
+        ]
+      }
+    ]
+  },
+  "conta_desconhecida": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789935000,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-OUTRA-CONTA-0001",
+              "from": {"id": "IGSID-EXEMPLO-9", "username": "perfil_exemplo_9"},
+              "text": "comentário de outra conta assinada no mesmo app",
+              "media": {"id": "MEDIA-OUTRA-CONTA", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "facebook_page": {
+    "object": "page",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789935100,
+        "changes": [
+          {
+            "field": "feed",
+            "value": {
+              "item": "comment",
+              "comment_id": "FBCID-EXEMPLO-0001",
+              "from": {"id": "PSID-EXEMPLO-1", "name": "Pessoa Exemplo"},
+              "message": "comentário no Facebook"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "duas_contas_no_mesmo_lote": {
+    "object": "instagram",
+    "entry": [
+      {
+        "id": "000000000000000",
+        "time": 1789935200,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-OUTRA-CONTA-0002",
+              "from": {"id": "IGSID-EXEMPLO-9", "username": "perfil_exemplo_9"},
+              "text": "primeiro entry do lote",
+              "media": {"id": "MEDIA-OUTRA-CONTA", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      },
+      {
+        "id": "000000000000000",
+        "time": 1789935200,
+        "changes": [
+          {
+            "field": "comments",
+            "value": {
+              "id": "CID-EXEMPLO-0007",
+              "from": {"id": "IGSID-EXEMPLO-6", "username": "perfil_exemplo_6"},
+              "text": "segundo entry do lote — o que o next() perdia",
+              "media": {"id": "MEDIA-EXEMPLO-B", "media_product_type": "REELS"}
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

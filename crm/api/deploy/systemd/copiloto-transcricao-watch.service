@@ -1,0 +1,7 @@
+[Unit]
+Description=Copiloto Acme · avisa a Dona se áudio de lead voltar a ficar mudo
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/transcricao-watch

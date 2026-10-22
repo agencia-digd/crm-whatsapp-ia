@@ -1,0 +1,9 @@
+[Unit]
+Description=Copiloto — retomada da Pessoa: tick a cada 3 min (só se o worker em thread estiver desligado)
+
+[Timer]
+OnCalendar=*:0/3
+Persistent=false
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Copiloto — conferente do remarketing: de hora em hora, no minuto 20 (reconfere hoje, ontem e anteontem; o status de entrega chega com atraso)
+
+[Timer]
+OnCalendar=*:20
+# Persistent=true: se a máquina estava desligada na hora, roda ao voltar. A
+# rodada é idempotente (uma linha por dia, reconferir atualiza).
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Copiloto — saída do remarketing: tick de hora em hora (o tick não manda mensagem, então não depende de horário comercial)
+
+[Timer]
+OnCalendar=*:07
+Persistent=false
+
+[Install]
+WantedBy=timers.target

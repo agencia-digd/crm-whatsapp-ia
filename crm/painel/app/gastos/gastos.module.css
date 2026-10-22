@@ -1,0 +1,73 @@
+/* Tela Gastos. Mesmos tokens da casa (--ink, --line, --surface, --accent).
+   Escala da obra 5: nada >= 24 px fora do H1, piso de 11 px. */
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 8px 0 48px; min-width: 0; }
+.topo { margin-bottom: 14px; }
+.titulo { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; margin: 0 0 4px; }
+.sub { font-size: 14px; color: var(--ink-2); }
+
+.cotacao {
+  font-size: 13px; color: var(--ink-2); line-height: 1.5;
+  background: var(--line-soft); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px;
+}
+
+.resumo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 8px; }
+.card, .cardDestaque {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 16px 18px; min-width: 0; display: flex; flex-direction: column; gap: 6px;
+}
+.cardDestaque { border-color: var(--accent); background: var(--accent-soft); }
+.cardRot { font-size: 12px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.06em; }
+.cardNota { font-size: 12px; color: var(--ink-2); }
+.card > .dinheiro b, .cardDestaque > .dinheiro b { font-size: 22px; }
+.partes { margin: 8px 0 0; display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 10px; }
+.partes > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.partes dt { font-size: 13px; color: var(--ink-2); }
+.partes dd { margin: 0; font-size: 14px; text-align: right; min-width: 0; }
+
+.dinheiro { display: inline-flex; flex-direction: column; align-items: inherit; line-height: 1.25; }
+.dinheiro b { font-size: 15px; font-weight: 700; }
+.usd { font-size: 12px; color: var(--ink-2); font-weight: 400; }
+.nota { font-size: 13px; color: var(--ink-2); }
+
+.semRegistro { font-size: 13px; color: var(--ink-2); line-height: 1.45; overflow-wrap: anywhere; }
+.semRegistro b { color: #8a5a00; }
+.semValor { font-size: 12px; color: var(--ink-2); font-weight: 400; overflow-wrap: anywhere; }
+
+.bloco { margin-top: 28px; }
+.blocoTitulo { font-size: 20px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 8px; }
+.fonte { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin: 6px 0 12px; }
+.fonte code { font-size: 12px; background: var(--line-soft); border-radius: 4px; padding: 1px 5px; }
+
+.mes { margin-bottom: 18px; }
+.mesTitulo { font-size: 16px; font-weight: 600; margin: 0 0 8px; }
+
+.tabelaWrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.tabela { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tabela th {
+  text-align: left; font-size: 12px; font-weight: 600; color: var(--ink-2);
+  text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 14px; border-bottom: 1px solid var(--line);
+}
+.tabela td { padding: 10px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+.tabela tbody tr:last-child td { border-bottom: 0; }
+.tabela tfoot td { font-weight: 700; border-top: 1px solid var(--line); background: var(--line-soft); }
+.n { text-align: right; font-variant-numeric: tabular-nums; }
+.tabela th.n { text-align: right; }
+.tpl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; overflow-wrap: anywhere; }
+.n .dinheiro { align-items: flex-end; }
+
+.tag, .tagMkt {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+}
+.tagMkt { background: #fcefd4; color: #8a5a00; }
+
+@media (max-width: 820px) {
+  .resumo { grid-template-columns: 1fr; }
+  .tabela th, .tabela td { padding: 8px 10px; }
+  .tabela { font-size: 13px; }
+  .partes > div { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .partes dd { text-align: left; }
+}
+
+.tpl .tag, .tpl .tagMkt { margin-top: 4px; }

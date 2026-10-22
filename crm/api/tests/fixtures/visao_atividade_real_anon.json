@@ -1,0 +1,3384 @@
+{
+"origem": "produção, só leitura, extraído em 06/10/2026: mensagens de 01/10 09:00–12:00 SP; ligações e eventos de 30/09 e 01/10 SP. Telefones e lead_id trocados (mesma pessoa = mesmo falso), textos fora.",
+"mensagens": [
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "document",
+"origem": null,
+"ts": "2026-10-01T12:02:39+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "document",
+"origem": null,
+"ts": "2026-10-01T12:02:39+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:03:22+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:03:22+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:06:07.836342+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "sticker",
+"origem": null,
+"ts": "2026-10-01T12:07:28+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:09:14+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:09:14.489802+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:09:30+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:18:05.869225+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:21:06.124018+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:24:14.978321+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:25:59+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:26:03+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:26:06+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:26:55+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "revoke",
+"origem": null,
+"ts": "2026-10-01T12:27:00+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:27:14.875827+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:27:44+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:30:08.932057+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:30:21+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:30:26+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:31:26+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:31:41+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:31:46+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:31:51+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:40:12+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T12:41:26+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:42:08.087893+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:43:32+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:45:05.892213+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:45:52+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:48:08+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:48:10.869506+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:48:15+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T12:50:07+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:51:04.198279+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:54:12.130089+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T12:57:12.080565+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:00:06.925227+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T13:02:44+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:03:04.030046+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:06:04.171349+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:09:04.389519+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:12:23+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:12:27+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:12:30+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:20:03+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:20:19+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:21:04.092249+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:24:55+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:27:06.823337+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:30:10.194680+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:31:13+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:31:29+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T13:31:34+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:31:39+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:31:54+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "sticker",
+"origem": null,
+"ts": "2026-10-01T13:31:57+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:32:03+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:33:27+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:36:04.921463+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T13:36:05+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:36:51+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:36:56+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:40:27.658225+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:42:25+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:42:26+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:47:56+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:48:03+00:00"
+},
+{
+"instance": "acme_corretora_c",
+"corretora_id": 1,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:48:08.954104+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "edit",
+"origem": null,
+"ts": "2026-10-01T13:53:50+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T13:54:45+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:55:05+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": "pos_ligacao",
+"ts": "2026-10-01T13:55:06.762430+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:55:19+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:55:19+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T13:55:30+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:55:43+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:55:57+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T13:56:01.796929+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:56:03+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:56:36+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:56:36+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "image",
+"origem": null,
+"ts": "2026-10-01T13:57:20+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "image",
+"origem": null,
+"ts": "2026-10-01T13:57:20+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:58:02+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:58:07+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:58:11+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": "pos_ligacao",
+"ts": "2026-10-01T13:58:56.178501+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T13:59:15+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:59:20+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:59:38+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:59:59+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T13:59:59+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:07+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:07+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:00:12+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:15+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:22+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:22+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:22+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:44+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:00:44+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:01:54+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:01:55+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:02:10+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:05:31.850037+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:06:32+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:07:16+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:07:26+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": null,
+"ts": "2026-10-01T14:09:15.126369+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 8,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:11:30+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:12:12+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:12:25+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:12:34+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:20:34+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:20:50+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:21:11+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "template",
+"origem": "pos_ligacao",
+"ts": "2026-10-01T14:25:49.663316+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:26:21+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:26:33+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:26:40+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:27:40+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:27:57+00:00"
+},
+{
+"instance": "acme_pessoa_d",
+"corretora_id": 7,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "reaction",
+"origem": null,
+"ts": "2026-10-01T14:28:05+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:29:10+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:30:27+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:30:52+00:00"
+},
+{
+"instance": "acme_corretora_c",
+"corretora_id": 1,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "unsupported",
+"origem": null,
+"ts": "2026-10-01T14:36:03+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:40:18.907291+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 8,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:42:20+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:42:48+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 4,
+"contato_telefone": "+5500000000000",
+"from_corretora": true,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:44:51+00:00"
+},
+{
+"instance": "acme_corretor",
+"corretora_id": 2,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "text",
+"origem": null,
+"ts": "2026-10-01T14:44:57+00:00"
+},
+{
+"instance": "acme_corretora_a",
+"corretora_id": 3,
+"contato_telefone": "+5500000000000",
+"from_corretora": false,
+"tipo_mensagem": "audio",
+"origem": null,
+"ts": "2026-10-01T14:46:20+00:00"
+}
+],
+"ligacoes": [
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-1",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:56:16.153815+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-2",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:56:40.743697+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-3",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:57:24.290932+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-4",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:57:45.034920+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-5",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:58:15.149357+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-6",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:58:33.309016+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-7",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T15:59:23.404416+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-8",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:00:12.848600+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-9",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:00:44.386887+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-10",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:01:09.979698+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-11",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:02:59.122101+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-12",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:03:20.923051+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-13",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:03:55.847180+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-14",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:04:28.330828+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-15",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:05:17.405724+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-16",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:06:03.132238+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-17",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:06:27.378037+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-18",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:08:20.750153+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-19",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:09:01.983144+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-20",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:09:44.451513+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-21",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:10:32.978778+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-22",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:11:28.565408+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-23",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:12:53.176085+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-24",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:15:46.064496+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-25",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:20:20.832924+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-26",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:20:54.601376+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-27",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:21:46.576042+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-28",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:22:04.838332+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-29",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:23:02.560602+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-30",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:23:58.713998+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-31",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:24:44.862185+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-32",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:25:37.731497+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-33",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:26:03.828678+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-34",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:26:54.132732+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-35",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:27:35.431795+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-36",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:34:33.737969+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-37",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:35:24.935853+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-38",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:35:48.609612+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-39",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:36:13.407777+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-40",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:37:35.870636+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-41",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:38:01.547633+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-42",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:38:44.151546+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-43",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:39:08.837531+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-44",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:39:57.646232+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-45",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:40:29.604526+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-46",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:40:45.794361+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-47",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:41:04.823784+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-48",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:41:40.745247+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-49",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:42:10.263772+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-50",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:43:12.981213+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-51",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:43:31.573184+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-52",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:43:54.686690+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-53",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:44:11.903816+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-54",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:45:03.130327+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-55",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:45:23.236143+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-56",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:46:03.173291+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-57",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:52:26.269033+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-58",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:53:21.768092+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-59",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:53:49.151210+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-60",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:54:30.737828+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-61",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:54:59.075274+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-62",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:55:26.131028+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-63",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:55:47.987982+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-64",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:56:38.690568+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-65",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T16:57:49.452642+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-66",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:01:05.877514+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-67",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:04:33.308619+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-68",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:04:50.473791+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-69",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:05:35.164158+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-70",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:06:26.671192+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-71",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:06:44.891761+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-72",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:07:09.621022+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-73",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:07:50.752039+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-74",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:08:21.238865+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-75",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:08:38.983328+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-76",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:10:06.574552+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-77",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:10:30.677104+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-78",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:10:55.523981+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-79",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:11:14.233352+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-80",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:11:38.486253+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-81",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:12:40.879725+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-82",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:15:09.242432+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-83",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:15:59.629156+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-84",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:17:05.136298+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-85",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:17:31.064452+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-86",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:17:50.952077+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-87",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:18:54.457044+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-88",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:19:19.432885+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-89",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:19:28.049587+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-90",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:19:41.015425+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-91",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:21:21.302718+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-92",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:21:40.585011+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-93",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:21:56.941814+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-94",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:25:42.764439+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-95",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:26:36.854919+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-96",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:27:23.055923+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-97",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:27:55.226382+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-98",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:28:15.086268+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-99",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:28:35.924787+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-100",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:29:00.528616+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-101",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:30:26.502999+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-102",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:30:37.833558+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-103",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:31:17.922175+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-104",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:31:42.299563+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-105",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:33:11.055919+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-106",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:34:26.228686+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-107",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:35:00.414291+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-108",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:35:26.918714+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-109",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:36:13.132895+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-110",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:36:30.148681+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-111",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:36:47.232667+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-112",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:38:12.105575+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-113",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:38:28.141268+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-114",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:39:15.429080+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-115",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:39:38.277639+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-116",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:39:59.162113+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-117",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:40:32.766390+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-118",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:41:08.277269+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-119",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:41:30.927404+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-120",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:42:32.851471+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-121",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:43:09.936931+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-122",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:43:59.215089+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-123",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:44:34.304661+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-124",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T17:50:10.067782+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-125",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T18:24:00.068580+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-126",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T18:25:59.177128+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-127",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:16:57.832081+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-128",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:17:01.799644+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-129",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:17:03.936116+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-130",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:24:25.350985+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-131",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:42:21.207630+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-132",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:42:29.173224+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-133",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T19:44:23.820024+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-134",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T22:39:49.744038+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-135",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T22:40:09.700591+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-136",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-09-30T22:48:34.167025+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-137",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:46:45.024935+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-138",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:47:29.618769+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-139",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:48:06.532487+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-140",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:48:25.568225+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-141",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:50:05.629029+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-142",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:50:58.218514+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-143",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:51:46.493473+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-144",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:52:31.369816+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-145",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:53:05.899360+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-146",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:54:00.639765+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-147",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:55:06.762430+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-148",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:57:48.656782+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-149",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-10-01T13:58:56.178501+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-150",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:00:46.423700+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-151",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:01:08.760521+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-152",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:01:41.268681+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-153",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:02:20.059187+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-154",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:03:07.588901+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-155",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:03:31.579087+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-156",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:04:16.028532+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-157",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:04:50.486064+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-158",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:05:38.776332+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-159",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:06:24.586806+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-160",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:07:02.324269+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-161",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:07:56.286914+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-162",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:12:10.562291+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-163",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:13:08.263585+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-164",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:13:58.417781+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-165",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:14:44.174638+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-166",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:15:26.300720+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-167",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:15:42.679731+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-168",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:16:32.597073+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-169",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:17:02.995396+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-170",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:17:30.241792+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-171",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:18:25.381162+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-172",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:19:17.036344+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-173",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:20:16.132119+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-174",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:21:17.791505+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-175",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:21:36.811418+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-176",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:23:40.340327+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-177",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:24:02.511796+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-178",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:24:48.861354+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-179",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:25:49.663316+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-180",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:27:09.979149+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-181",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:27:27.064906+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-182",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:27:42.802059+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-183",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:29:01.487906+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-184",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:29:27.742180+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-185",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:30:21.185669+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-186",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:31:11.554607+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-187",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:32:00.732105+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-188",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:32:34.882771+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-189",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:33:05.610184+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-190",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:33:40.925392+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-191",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T14:34:12.860653+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-192",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:06:20.679253+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-193",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:07:20.272860+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-194",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:08:08.339893+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-195",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:08:49.604012+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-196",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:09:40.076614+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-197",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:10:20.126455+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-198",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:10:38.285487+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-199",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:11:21.152032+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-200",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:11:46.197309+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-201",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:12:35.432023+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-202",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:15:36.005587+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-203",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:15:57.760228+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-204",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:16:45.002400+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-205",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:17:02.734771+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-206",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:17:48.943125+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-207",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:18:03.916787+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-208",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:18:43.312312+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-209",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:19:28.905730+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-210",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:19:34.118764+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-211",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:20:25.142328+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-212",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:21:18.830108+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-213",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:23:04.833056+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-214",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:25:12.142119+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-215",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:25:32.351888+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-216",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:26:01.906924+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-217",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:26:43.475104+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-218",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:27:35.499102+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-219",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:28:03.711768+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 7,
+"lead_id": "TSTV-220",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T16:28:53.027082+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-221",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T22:59:53.855835+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-222",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:01:49.581481+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-223",
+"atendeu": true,
+"quis_continuar": false,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:16:26.403711+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-224",
+"atendeu": true,
+"quis_continuar": true,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:29:53.234577+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-225",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:35:43.308179+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-226",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:35:51.965681+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-227",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:36:07.282766+00:00"
+},
+{
+"origem": "remarketing",
+"corretora_id": 8,
+"lead_id": "TSTV-228",
+"atendeu": false,
+"quis_continuar": null,
+"obs_incorreto": false,
+"ts": "2026-10-01T23:36:13.269077+00:00"
+}
+],
+"eventos": [
+{
+"tipo": "ligacao_venda_perdida",
+"corretora_id": 7,
+"ts": "2026-09-30T17:14:19.355818+00:00"
+},
+{
+"tipo": "ligacao_venda_perdida",
+"corretora_id": 7,
+"ts": "2026-09-30T17:20:40.402637+00:00"
+},
+{
+"tipo": "ligacao_venda_perdida",
+"corretora_id": 7,
+"ts": "2026-09-30T17:37:41.919916+00:00"
+}
+],
+"esperado_mensagens": {
+"1": {
+"escritas": 0,
+"pessoas": 0,
+"automaticas": 1,
+"pessoas_automaticas": 1,
+"recebidas": 1,
+"pessoas_que_falaram": 1
+},
+"2": {
+"escritas": 39,
+"pessoas": 11,
+"automaticas": 0,
+"pessoas_automaticas": 0,
+"recebidas": 33,
+"pessoas_que_falaram": 9
+},
+"3": {
+"escritas": 3,
+"pessoas": 2,
+"automaticas": 22,
+"pessoas_automaticas": 22,
+"recebidas": 5,
+"pessoas_que_falaram": 2
+},
+"4": {
+"escritas": 15,
+"pessoas": 3,
+"automaticas": 0,
+"pessoas_automaticas": 0,
+"recebidas": 0,
+"pessoas_que_falaram": 0
+},
+"7": {
+"escritas": 10,
+"pessoas": 3,
+"automaticas": 4,
+"pessoas_automaticas": 4,
+"recebidas": 1,
+"pessoas_que_falaram": 1
+},
+"8": {
+"escritas": 1,
+"pessoas": 1,
+"automaticas": 0,
+"pessoas_automaticas": 0,
+"recebidas": 1,
+"pessoas_que_falaram": 1
+},
+"total": {
+"escritas": 68,
+"pessoas": 20,
+"automaticas": 27,
+"pessoas_automaticas": 27,
+"recebidas": 41,
+"pessoas_que_falaram": 14
+}
+},
+"esperado_ligacoes": {
+"7": {
+"feitas": 205,
+"atendidas": 11,
+"nao_atendidas": 194,
+"quiseram_continuar": 6,
+"numero_incorreto_na_obs": 0,
+"pessoas": 205
+},
+"8": {
+"feitas": 23,
+"atendidas": 4,
+"nao_atendidas": 19,
+"quiseram_continuar": 2,
+"numero_incorreto_na_obs": 0,
+"pessoas": 23
+},
+"total": {
+"feitas": 228,
+"atendidas": 15,
+"nao_atendidas": 213,
+"quiseram_continuar": 8,
+"numero_incorreto_na_obs": 0,
+"pessoas": 228
+}
+}
+}

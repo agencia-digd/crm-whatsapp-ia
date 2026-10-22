@@ -1,0 +1,9 @@
+[Unit]
+Description=Copiloto — lembrete D-1 da visita: tick a cada 10 min (o envio só sai 18h-21h SP; o horário é checado no código)
+
+[Timer]
+OnCalendar=*:0/10
+Persistent=false
+
+[Install]
+WantedBy=timers.target

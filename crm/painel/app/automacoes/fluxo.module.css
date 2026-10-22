@@ -1,0 +1,205 @@
+/* 🗺 Vista Fluxo — canvas estilo editor de salesbot do Kommo, no design V2:
+   base areia com grade de pontos, caixas brancas numeradas, balões de
+   mensagem azuis (familiaridade Kommo), condições com filete âmbar. */
+
+/* ── toolbar de estado vivo ── */
+.toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-size: 12px;
+}
+.chipLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.chipInfo { color: var(--ink-2); font-size: 12px; }
+
+/* ── palco (viewport com scroll + zoom flutuante) ── */
+.stage { position: relative; }
+.viewport {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: auto;
+  height: calc(100vh - 264px);
+  min-height: 480px;
+}
+.zoomCtl {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 2px;
+  box-shadow: 0 2px 10px rgba(31, 29, 26, 0.08);
+}
+.zoomBtn {
+  width: 26px;
+  height: 26px;
+  border: 0;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 15px;
+  color: var(--ink-2);
+  cursor: pointer;
+  line-height: 1;
+}
+.zoomBtn:hover { background: var(--line-soft); color: var(--ink); }
+.zoomPct {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  min-width: 36px;
+  text-align: center;
+}
+
+/* ── canvas (maior que a tela, grade de pontos como o Kommo) ── */
+.canvas {
+  position: relative;
+  width: max-content;
+  min-width: 100%;
+  transform-origin: 0 0;
+  padding: 40px 120px 72px 40px;
+  background-image: radial-gradient(#e3dfd6 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+.wires { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 0; }
+
+/* ── fluxos ── */
+.flow { margin-bottom: 88px; position: relative; z-index: 1; }
+.flow:last-child { margin-bottom: 0; }
+.flowLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.flowLabelOff { color: var(--ink-3); }
+.flowNota {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 14px;
+}
+.row { display: flex; gap: 56px; align-items: flex-start; }
+.seq { display: flex; gap: 56px; align-items: flex-start; }
+.branchRow { display: flex; gap: 40px; align-items: flex-start; margin: 64px 0 0 340px; }
+
+/* ── nós (caixa branca com título numerado, sombra leve) ── */
+.node {
+  width: 252px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(31, 29, 26, 0.07);
+  position: relative;
+  z-index: 1;
+}
+.node.wide { width: 320px; }
+.nodeHead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px 8px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.nodeNum {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  border-radius: 6px;
+  padding: 1px 6px;
+  flex-shrink: 0;
+}
+.nodeIcon { font-size: 12px; flex-shrink: 0; }
+.nodeTitulo { flex: 1; min-width: 0; letter-spacing: -0.01em; }
+.nodeBadge { flex-shrink: 0; }
+.nodeBody { padding: 10px 12px 12px; font-size: 12.3px; color: var(--ink-2); line-height: 1.5; }
+
+/* condição (ramificação) — filete âmbar à esquerda */
+.cond { border-left: 3px solid #c78a1a; }
+.condNota {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line-soft);
+}
+
+/* fluxo desligado — esmaecido */
+.muted { opacity: 0.55; filter: saturate(0.35); border-style: dashed; }
+
+/* ── balão de mensagem (preview do que o lead vê) ── */
+.balao {
+  background: #d9fdd3;
+  color: #111b21;
+  border-radius: 8px 8px 2px 8px;
+  padding: 9px 12px;
+  font-size: 12.3px;
+  line-height: 1.55;
+  margin-top: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+}
+.balaoQuando {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 10px;
+}
+.balaoQuando:first-child { margin-top: 0; }
+
+.acaoTexto { font-size: 12.3px; color: var(--ink-2); }
+
+.tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 9px; }
+.tags:empty { display: none; }
+.tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  padding: 1px 7px;
+  border-radius: 99px;
+}
+
+/* ── pausa (pílula de espera) ── */
+.wait {
+  margin-top: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background: var(--bg);
+  border: 1px dashed #cfc9bd;
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-2);
+  position: relative;
+  z-index: 1;
+}

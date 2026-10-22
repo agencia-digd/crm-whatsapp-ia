@@ -1,0 +1,83 @@
+"""
+Resume o funil semanal de um mês.
+
+Uso:
+  python3 summary.py                    # mês corrente
+  python3 summary.py --month 2026-04
+"""
+import argparse
+import sys
+from datetime import datetime
+from _helper import open_sheet
+
+MONTH_PT = ["", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--month", help="YYYY-MM (default: mês corrente)")
+    args = ap.parse_args()
+
+    now = datetime.now()
+    if args.month:
+        y, m = map(int, args.month.split("-"))
+    else:
+        y, m = now.year, now.month
+    target_label = f"{MONTH_PT[m]} {y}"
+
+    sh = open_sheet()
+    ws = sh.worksheet("Funil Semanal")
+    rows = ws.get_values("A1:Z80")
+
+    # encontra coluna do mês alvo (linha 4 tem cabeçalho de meses)
+    if len(rows) < 4:
+        print("planilha vazia ou layout inesperado")
+        return
+    header = rows[3]
+    col = None
+    for ci, cell in enumerate(header):
+        if (cell or "").strip().lower() == target_label.lower():
+            col = ci
+            break
+    if col is None:
+        print(f"mês '{target_label}' não encontrado na planilha")
+        print(f"meses disponíveis: {[c for c in header if c.strip()]}")
+        return
+
+    # blocos: TOTAL GERAL, CORRETORA_C, CORRETORA_B, CORRETORA_A
+    BLOCKS = ["TOTAL GERAL", "CORRETORA_C", "CORRETORA_B", "CORRETORA_A"]
+    INDS = ["Total", "Atendeu", "Agendou", "Realizada", "Vendas", "VGV"]
+
+    print(f"\n=== {target_label} ===\n")
+    current = None
+    block_data = {}
+    for row in rows:
+        if not row:
+            continue
+        first = (row[0] or "").strip()
+        if first in BLOCKS:
+            current = first
+            block_data[current] = {}
+        elif first in INDS and current:
+            v = row[col] if col < len(row) else ""
+            pct = row[col + 1] if (col + 1) < len(row) else ""
+            block_data[current][first] = (v, pct)
+
+    for bname in BLOCKS:
+        if bname not in block_data:
+            continue
+        print(f"  {bname}")
+        for ind in INDS:
+            if ind not in block_data[bname]:
+                continue
+            v, pct = block_data[bname][ind]
+            line = f"    {ind:<12} {v:>15}"
+            if pct and pct != "%":
+                line += f"   ({pct})"
+            print(line)
+        print()
+
+
+if __name__ == "__main__":
+    main()

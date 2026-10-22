@@ -1,0 +1,11 @@
+[Unit]
+Description=Copiloto — modo sombra a cada 30 min (Pessoa3 piloto; NUNCA envia)
+
+[Timer]
+OnBootSec=12min
+OnUnitActiveSec=30min
+Persistent=false
+Unit=copiloto-shadow.service
+
+[Install]
+WantedBy=timers.target

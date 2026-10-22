@@ -1,0 +1,12 @@
+[Unit]
+Description=Copiloto — aviso de briefing SEXTA (template UTILITY, linha Assistente)
+After=copiloto-api.service
+Requires=copiloto-api.service
+
+[Service]
+Type=oneshot
+# Folga pro envio escalonado (3 corretoras × até 180s de intervalo anti-ban).
+TimeoutStartSec=900
+ExecStart=/bin/bash /opt/crm/scripts/briefing_push_aviso.sh sex
+StandardOutput=journal
+StandardError=journal

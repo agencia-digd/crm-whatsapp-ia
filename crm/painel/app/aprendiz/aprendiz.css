@@ -1,0 +1,176 @@
+/* Aprendiz — placar do modo sombra + bateu ou não. Segue a base neutra do V2. */
+
+.ap-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.ap-kpi {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.ap-kpi.accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ap-kpi.accent .ap-kpi-lbl, .ap-kpi.accent .ap-kpi-sub { color: rgba(255, 255, 255, 0.75); }
+.ap-kpi-lbl {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ap-kpi-val { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-top: 4px; }
+.ap-kpi-sub { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+
+/* barra empilhada dos buckets/vereditos */
+.ap-barra {
+  display: flex;
+  height: 10px;
+  border-radius: 99px;
+  overflow: hidden;
+  background: var(--line-soft);
+  margin: 10px 0 8px;
+}
+.ap-barra > div { height: 100%; }
+.ap-seg-sozinha, .ap-seg-bateu { background: #1a7f37; }
+.ap-seg-rascunho, .ap-seg-parcial { background: #d9a514; }
+.ap-seg-chapessoa, .ap-seg-nao { background: #c0392b; }
+.ap-seg-sem { background: #cfcabf; }
+
+.ap-legenda { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); }
+.ap-legenda b { color: var(--ink); }
+.ap-legenda .dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 99px; margin-right: 5px;
+}
+
+.ap-secao {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 22px;
+}
+.ap-secao h3 { font-size: 15px; font-weight: 600; }
+.ap-secao .ap-secao-sub {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+
+/* ── pares rascunho × real ── */
+.ap-par {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.ap-par-head {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.ap-par-lead { font-size: 13.5px; font-weight: 600; }
+.ap-par-meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px; color: var(--ink-3);
+}
+.ap-selo {
+  margin-left: auto;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px; font-weight: 700;
+  padding: 2px 10px; border-radius: 99px;
+}
+.ap-selo.bateu { color: #1a7f37; background: #e6f3ea; }
+.ap-selo.parcial { color: #9a5b00; background: #fbf1e0; }
+.ap-selo.nao_bateu { color: #b3261e; background: #fdecea; }
+.ap-selo.sem_resposta_real, .ap-selo.sem_comparacao { color: var(--ink-3); background: var(--line-soft); }
+
+.ap-par-msg-lead {
+  font-size: 12.5px; color: var(--ink-2);
+  border-left: 2px solid var(--line);
+  padding: 2px 10px; margin-bottom: 10px;
+}
+.ap-par-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 860px) { .ap-par-cols { grid-template-columns: 1fr; } }
+.ap-lado { border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 12px; background: var(--bg); }
+.ap-lado-lbl {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 6px;
+}
+.ap-lado.ia .ap-lado-lbl { color: var(--accent); }
+.ap-lado-txt { font-size: 13px; white-space: pre-wrap; }
+.ap-lado-txt.vazio { color: var(--ink-3); font-style: italic; }
+
+.ap-mais {
+  display: block; margin: 6px auto 0;
+  font: inherit; font-size: 13px; font-weight: 500;
+  color: var(--accent); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 99px;
+  padding: 7px 22px; cursor: pointer;
+}
+.ap-mais:hover { border-color: var(--accent); }
+.ap-mais:disabled { opacity: 0.5; cursor: default; }
+
+.ap-select {
+  font: inherit; font-size: 13px; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 5px 10px;
+}
+
+/* ── retrato de FORMA: o que a IA faz × o que a corretora faz ──
+   A tabela existe pra tornar óbvio um desvio que o percentual sozinho esconde:
+   a IA pode ter uma taxa de acerto razoável e mesmo assim encerrar conversa
+   dez vezes mais que a corretora. */
+.ap-formas { margin-top: 18px; }
+.ap-formas-tit { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.ap-formas-tab { border-collapse: collapse; width: 100%; max-width: 460px; }
+.ap-formas-tab th,
+.ap-formas-tab td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line-soft, #efece6);
+  font-size: 13px;
+}
+.ap-formas-tab th {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3, #a39e93);
+}
+.ap-formas-tab td:not(:first-child) {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  width: 90px;
+}
+.ap-formas-exp {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-3, #a39e93);
+  margin-top: 2px;
+}
+
+/* ── marcação acertou/errou, juiz e "o que aprendeu" ── */
+.ap-juiz { font-size: 12px; color: var(--ink-3, #a39e93); margin: 6px 0 0; }
+.ap-marcar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.ap-marcar-lbl { font-size: 12px; color: var(--ink-3, #a39e93); margin-right: 2px; }
+.ap-btn {
+  font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+  border-radius: 99px; padding: 6px 14px; min-height: 32px;
+}
+.ap-btn.ok.on { background: #1a7f37; border-color: #1a7f37; color: #fff; }
+.ap-btn.no.on { background: #c0392b; border-color: #c0392b; color: #fff; }
+.ap-btn:hover { border-color: var(--accent); }
+.ap-sub-tit { font-size: 13px; font-weight: 700; margin: 18px 0 8px; }
+.ap-mud { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line-soft, #efece6); }
+.ap-mud-data { font-family: var(--font-mono), ui-monospace, monospace; font-size: 12px; color: var(--ink-3, #a39e93); min-width: 76px; padding-top: 2px; }
+.ap-mud-txt { font-size: 13px; color: var(--ink-2, #5c584f); margin-top: 2px; }
+.ap-mud-efeito { font-size: 12.5px; font-weight: 600; margin-top: 4px; }
+.ap-tab-wrap { overflow-x: auto; }
+.ap-evo { max-width: 560px; }
+.ap-evo td:not(:first-child) { width: auto; }
+.ap-cor { padding: 8px 0; border-bottom: 1px solid var(--line-soft, #efece6); font-size: 13px; }
+.ap-aviso { margin-top: 14px; font-size: 12.5px; color: var(--ink-2, #5c584f); border-left: 3px solid #d9a514; padding: 4px 0 4px 10px; }

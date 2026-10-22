@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+"""Avisa a Dona quando a Pessoa12 ou a Pessoa11 responderem o recado de fechamento de agosto.
+
+Contexto (01/09/2026): a Dona precisa de 3 informações pra fechar o mês —
+o VALOR das duas vendas da Pessoa12 (João e Sarah, marcadas como ganhas em 31/08 sem
+valor em lugar nenhum), o status de 3 visitas sem desfecho, e o que houve com a
+Luciene. O recado foi enviado às 11:12 UTC pela linha da Assistente, via template
+UTILITY + recado pendente (as duas estão com briefing_optout, então foi envio
+pontual autorizado por ela, sem religar o ritual).
+
+Vigia TRÊS coisas, porque a pergunta foi por dois canais:
+  1. Clique no botão — abre a janela e o recado completo sai sozinho. Sem isso
+     elas nem leram o pedido.
+  2. Mensagem de texto/áudio delas no WhatsApp — a resposta que a Dona espera.
+  3. A TAREFA no Meu Dia (concluída ou anotada). O telefone da Pessoa12 cadastrado no
+     sistema é a linha 2591, onde ela atende cliente o dia todo — o recado se
+     perde ali. Por isso a pergunta também virou tarefa no painel, e responder
+     por lá conta igual. Vigiar só o WhatsApp seria vigiar o canal que falhou.
+
+Avisa uma vez por corretora e para. Não insiste, não reenvia: quem não respondeu
+em dois dias não vai responder por causa de alarme repetido — nesse caso o
+caminho é a Dona falar direto, e o watch some do caminho.
+"""
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+
+import psycopg
+
+DSN = os.getenv("FECHAMENTO_DSN", "postgresql://user:CHANGE_ME@localhost:5432/copiloto")
+NOTIFY = os.getenv("FECHAMENTO_NOTIFY", "http://127.0.0.1:8099/api/notify")
+ESTADO = os.getenv("FECHAMENTO_ESTADO", "/var/lib/assistente/acme-fechamento-resposta.json")
+ENV_NOTIFY = "/opt/telegram-claude/.env"
+
+# Momento do envio do recado — só conta o que veio DEPOIS disso.
+DESDE = os.getenv("FECHAMENTO_DESDE", "2026-09-01 11:12:00+00")
+ALVOS = {3: "Pessoa3", 2: "Pessoa1"}
+
+
+def carrega() -> dict:
+    try:
+        with open(ESTADO) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def salva(estado: dict) -> None:
+    os.makedirs(os.path.dirname(ESTADO), exist_ok=True)
+    tmp = ESTADO + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(estado, f)
+    os.replace(tmp, ESTADO)
+
+
+def token() -> str:
+    with open(ENV_NOTIFY) as f:
+        for linha in f:
+            if linha.startswith("NOTIFY_API_TOKEN="):
+                return linha.split("=", 1)[1].strip()
+    raise SystemExit("NOTIFY_API_TOKEN ausente")
+
+
+def avisa(task_id: str, texto: str) -> bool:
+    corpo = json.dumps({"task_id": task_id, "text": texto}).encode()
+    req = urllib.request.Request(
+        NOTIFY, data=corpo,
+        headers={"Authorization": "Bearer " + token(), "Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200
+    except urllib.error.URLError as e:
+        print(f"falha ao avisar: {e}", file=sys.stderr)
+        return False
+
+
+def main() -> int:
+    estado = carrega()
+    with psycopg.connect(DSN, connect_timeout=10) as con, con.cursor() as cur:
+        for cid, nome in ALVOS.items():
+            if estado.get(str(cid)):
+                continue
+            cur.execute("""
+                SELECT right(regexp_replace(telefone_normalizado,'\\D','','g'), 8)
+                  FROM corretoras WHERE id = %s
+            """, (cid,))
+            row = cur.fetchone()
+            if not row or not row[0]:
+                continue
+            suf = row[0]
+
+            cur.execute("""
+                SELECT (timestamp_evolution AT TIME ZONE 'America/Sao_Paulo'),
+                       tipo_mensagem,
+                       coalesce(nullif(conteudo_texto,''), transcricao, '['||tipo_mensagem||']')
+                  FROM mensagens_whatsapp
+                 WHERE instance = 'cloud_assistente' AND NOT from_corretora
+                   AND right(regexp_replace(contato_telefone,'\\D','','g'), 8) = %s
+                   AND timestamp_evolution > %s::timestamptz
+                 ORDER BY timestamp_evolution
+            """, (suf, DESDE))
+            msgs = cur.fetchall()
+
+            # Caminho 2: ela respondeu pelo painel (concluiu ou anotou a tarefa).
+            cur.execute("""
+                SELECT status, coalesce(anotacoes,''), concluido_em
+                  FROM tarefas_corretora
+                 WHERE corretora_id = %s AND texto ILIKE '%%valor da venda%%'
+                 ORDER BY id DESC LIMIT 1
+            """, (cid,))
+            tarefa = cur.fetchone()
+            if tarefa and (tarefa[0] != "aberta" or tarefa[2]):
+                if avisa(f"fechamento-tarefa-{cid}",
+                         f"✅ A {nome} concluiu no painel a tarefa do valor da venda.\n\n"
+                         f"  anotação: {tarefa[1][:300] or '(sem anotação — vale conferir com ela)'}"):
+                    estado[str(cid)] = True
+                print(f"{nome}: respondeu pelo PAINEL (tarefa {tarefa[0]})")
+                continue
+
+            if not msgs:
+                continue
+
+            # Clique no botão sozinho ainda não é resposta — é leitura.
+            texto_real = [m for m in msgs if m[1] != "button"]
+            corpo = "\n".join(f"  {q:%d/%m %H:%M} — {t[:200]}" for q, _, t in texto_real[:6])
+            if texto_real:
+                cabeca = f"💬 A {nome} respondeu o recado do fechamento de agosto:"
+            else:
+                cabeca = (f"👀 A {nome} ABRIU o recado do fechamento (tocou no botão), "
+                          "mas ainda não respondeu.")
+                corpo = "  (só o clique até agora — o texto completo já foi entregue a ela)"
+
+            if avisa(f"fechamento-resposta-{cid}", f"{cabeca}\n\n{corpo}"):
+                # Só marca como avisado quando houve RESPOSTA de verdade; se foi
+                # só o clique, segue vigiando pra pegar o texto quando vier.
+                if texto_real:
+                    estado[str(cid)] = True
+                else:
+                    estado[f"{cid}_clicou"] = True
+            print(f"{nome}: {len(msgs)} msg(s) desde o envio — "
+                  f"{'respondeu' if texto_real else 'só abriu'}")
+
+    salva(estado)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

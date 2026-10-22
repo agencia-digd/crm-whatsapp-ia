@@ -1,0 +1,98 @@
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f6f4ef;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e7e4dd;
+  border-radius: 16px;
+  padding: 34px 30px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.marca {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e8720c;
+  margin: 0 0 6px;
+}
+
+.titulo {
+  font-size: 21px;
+  font-weight: 700;
+  margin: 0 0 22px;
+  color: #1b1a17;
+}
+
+.campo {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.rotulo {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b665d;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ddd8ce;
+  border-radius: 9px;
+  padding: 11px 12px;
+  font-size: 16px; /* 16px evita o zoom automático do iOS ao focar */
+  color: #1b1a17;
+  background: #fff;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #e8720c;
+}
+
+.btn {
+  width: 100%;
+  border: 0;
+  background: #e8720c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.erro {
+  background: #fdf0ec;
+  border: 1px solid #f3c9ba;
+  color: #a8390f;
+  font-size: 13px;
+  border-radius: 9px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.nota {
+  font-size: 12px;
+  color: #8b857a;
+  margin: 18px 0 0;
+  line-height: 1.5;
+  text-align: center;
+}

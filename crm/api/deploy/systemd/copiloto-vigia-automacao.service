@@ -1,0 +1,13 @@
+[Unit]
+Description=Copiloto — vigia de automação dormindo (aviso interno no Telegram da Assistente; nenhum lead recebe nada)
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+StateDirectory=copiloto-vigia
+Environment=VIGIA_ESTADO=/var/lib/copiloto-vigia/estado.json
+TimeoutStartSec=120
+ExecStart=/opt/crm/.venv/bin/python scripts/vigia_automacao_dormindo.py

@@ -1,0 +1,180 @@
+/* Painel VISÃO (dashboard gerencial) — estilo portado 1:1 do dash-imobiliaria
+   (V1: app/globals.css classes vg-*, hoje-* e frescor). Escopo próprio do V2:
+   as vars --gray/--success não existem no globals do V2, então valores fixos. */
+
+.vg { flex: 1; overflow-y: auto; padding: 22px 26px 60px; background: #f6f4ef; min-height: 100%; }
+
+.hoje-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.hoje-kick { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: #8a857c; font-weight: 700; }
+.hoje-titulo { font-size: 26px; font-weight: 800; color: #15110d; margin: 2px 0 4px; }
+.hoje-sub { font-size: 13px; color: #8a857c; max-width: 560px; margin: 0; }
+.hoje-vazio { color: #999; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 30px; text-align: center; }
+.loading { padding: 22px; color: #8a857c; font-size: 13px; }
+
+.frescor {
+  font-size: 11px; color: #8a857c; font-weight: 500;
+  padding: 2px 16px 6px; letter-spacing: 0.01em; cursor: help;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vg-info { color: #8a857c; font-size: 0.8em; cursor: help; }
+
+.vg-periodo { padding: 8px 12px; border-radius: 10px; border: 1px solid #e3ddd2; background: #fff; font-size: 13px; color: #2b2620; cursor: pointer; height: fit-content; }
+.vg-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 8px; }
+.vg-kpi { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 16px 18px; }
+.vg-kpi.dark { background: #221f1a; border-color: #221f1a; }
+.vg-kpi.accent { background: linear-gradient(135deg, #E8720C, #c85e08); border-color: #E8720C; }
+.vg-kpi-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: #8a857c; font-weight: 700; }
+.vg-kpi.dark .vg-kpi-lbl, .vg-kpi.accent .vg-kpi-lbl { color: rgba(255,255,255,.7); }
+.vg-kpi-val { font-size: 28px; font-weight: 800; color: #15110d; margin-top: 4px; line-height: 1.1; }
+.vg-kpi.dark .vg-kpi-val, .vg-kpi.accent .vg-kpi-val { color: #fff; }
+.vg-kpi-sub { font-size: 11.5px; color: #8a857c; margin-top: 4px; }
+.vg-kpi.dark .vg-kpi-sub, .vg-kpi.accent .vg-kpi-sub { color: rgba(255,255,255,.75); }
+.vg-sec-titulo { font-size: 14px; font-weight: 800; color: #15110d; margin: 22px 0 12px; }
+.vg-mono { font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .8px; color: #8a857c; }
+
+.vg-funilbox { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 20px; margin-top: 4px; }
+.vg-funilbox-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+.vg-funilbox-head h3 { font-size: 16px; font-weight: 800; color: #15110d; margin: 0 0 2px; }
+.vg-funil-geral { font-size: 18px; font-weight: 800; color: #E8720C; }
+.vg-funilbars { display: flex; flex-direction: column; gap: 9px; }
+.vg-funilrow { display: flex; align-items: center; gap: 12px; }
+.vg-funilrow-lbl { width: 96px; text-align: right; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: #6b6358; }
+.vg-funilrow-track { flex: 1; height: 36px; position: relative; }
+.vg-funilrow-bar { position: absolute; inset: 0 auto 0 0; border-radius: 8px; display: flex; align-items: center; padding: 0 14px; transition: width .7s; }
+.vg-funilrow-bar span { font-weight: 800; font-size: 15px; color: #fff; }
+.vg-funilrow-bar.ouro { background: linear-gradient(90deg,#d8c9a8,#c9a86a); } .vg-funilrow-bar.ouro span { color: #4a3f28; }
+.vg-funilrow-bar.grafite { background: linear-gradient(90deg,#3a352d,#221f1a); }
+.vg-funilrow-bar.laranja { background: linear-gradient(90deg,rgba(232,114,12,.85),#E8720C); }
+.vg-funilrow-bar.verde { background: linear-gradient(90deg,#3f7b5f,#2f6b4f); }
+.vg-funilrow-conv { width: 150px; text-align: right; font-size: 13px; color: #15110d; }
+.vg-funilrow-conv b { font-weight: 800; }
+.vg-funilrow-conv .vg-up { color: #1a6b3a; font-size: 10px; } .vg-funilrow-conv .vg-down { color: #c0392b; font-size: 10px; }
+
+.vg-cc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+.vg-cc { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 18px; }
+.vg-cc-top { display: flex; align-items: center; gap: 12px; }
+.vg-cc-av { width: 40px; height: 40px; border-radius: 50%; background: #ece7df; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #15110d; font-size: 17px; }
+.vg-cc-nome { font-weight: 800; font-size: 16px; color: #15110d; }
+.vg-cc-sub { font-size: 11px; color: #8a857c; }
+.vg-cc-vgv { font-weight: 800; font-size: 18px; color: #15110d; }
+.vg-cc-recup { display: flex; justify-content: space-between; align-items: baseline; background: #faf5e9; border-top: 1px solid #efe4c8; border-bottom: 1px solid #efe4c8; padding: 6px 4px; margin: 12px 0 4px; }
+.vg-cc-mini { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
+.vg-cc-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.vg-cc-row-l { width: 46px; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; color: #6b6358; }
+.vg-cc-track { flex: 1; height: 8px; border-radius: 99px; background: #efece5; overflow: hidden; }
+.vg-cc-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg,rgba(232,114,12,.7),#E8720C); transition: width .7s; }
+.vg-cc-v { width: 34px; text-align: right; font-family: ui-monospace, monospace; color: #15110d; }
+.vg-cc-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+.vg-cc-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #efece5; font-size: 13px; }
+
+.vg-vaz { background: #fffdf5; border: 1px solid #f0e8d0; border-radius: 14px; padding: 14px 18px; margin-top: 12px; }
+.vg-vaz-lbl { font-weight: 700; color: #9a7000; font-size: 13px; margin-bottom: 8px; }
+.vg-vaz-cels { display: flex; gap: 10px; flex-wrap: wrap; }
+.vg-vaz-cel { font-size: 12.5px; color: #5a544a; background: #fff; border: 1px solid #eee; border-radius: 8px; padding: 5px 10px; }
+.vg-vaz-cel.ok b { color: #1a6b3a; } .vg-vaz-cel.warn b { color: #9a7000; } .vg-vaz-cel.bad b { color: #c0392b; }
+
+.vg-alertas { display: flex; flex-direction: column; gap: 8px; }
+.vg-alerta { font-size: 13px; color: #5a4a14; background: #fff8e8; border: 1px solid #f0e0a0; border-radius: 10px; padding: 10px 13px; }
+.vg-alerta.alto { color: #7a1f1f; background: #fdeef0; border-color: #f0c0c0; }
+
+/* Tendência 14 dias — barrinhas verticais (novo no V2, mesma linguagem vg-*). */
+.vg-tend { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 18px 20px; margin-top: 4px; }
+.vg-tend-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+.vg-tend-head h3 { font-size: 15px; font-weight: 800; color: #15110d; margin: 0; }
+.vg-tend-bars { display: flex; align-items: flex-end; gap: 6px; height: 120px; }
+.vg-tend-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+.vg-tend-bar { width: 100%; max-width: 26px; background: linear-gradient(180deg,#E8720C,#c85e08); border-radius: 5px 5px 0 0; min-height: 2px; position: relative; }
+.vg-tend-bar span { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 800; color: #15110d; }
+.vg-tend-col.zero .vg-tend-bar { background: #e3ddd2; }
+.vg-tend-dia { font-size: 9px; color: #8a857c; font-family: ui-monospace, monospace; white-space: nowrap; }
+
+/* ── Interatividade (2026-07-26): hover + clique + animação de entrada ─────
+   Sem lib de gráfico — só CSS sobre as barras SVG-less que já existiam.
+   prefers-reduced-motion desliga as animações (acessibilidade). */
+
+/* animação de entrada: as barras crescem do zero até o width/height inline */
+@keyframes vgGrowX { from { width: 8px; opacity: .4; } }
+@keyframes vgGrowY { from { height: 2px; opacity: .4; } }
+.vg-funilrow-bar.anim { animation: vgGrowX .55s cubic-bezier(.22,.8,.36,1) backwards; }
+.vg-tend-bar.anim { animation: vgGrowY .5s cubic-bezier(.22,.8,.36,1) backwards; }
+.vg-cc-bar.anim { animation: vgGrowX .55s cubic-bezier(.22,.8,.36,1) backwards; }
+@media (prefers-reduced-motion: reduce) {
+  .vg-funilrow-bar.anim, .vg-tend-bar.anim, .vg-cc-bar.anim { animation: none; }
+}
+
+/* funil: etapa clicável — hover destaca, clique expande o detalhe */
+.vg-funilrow.clicavel { cursor: pointer; border-radius: 10px; padding: 3px 4px; margin: -3px -4px; transition: background .15s; }
+.vg-funilrow.clicavel:hover { background: #faf7f0; }
+.vg-funilrow.clicavel:hover .vg-funilrow-bar { filter: brightness(1.07); }
+.vg-funilrow.clicavel.aberta { background: #faf5ea; }
+.vg-funil-detalhe { margin: 6px 0 4px 108px; padding: 10px 14px; background: #fbf9f4; border: 1px solid #eee7db; border-left: 3px solid #E8720C; border-radius: 10px; animation: vgFade .2s ease-out; }
+.vg-funil-detalhe-head { font-size: 12.5px; color: #15110d; margin-bottom: 8px; }
+.vg-funil-detalhe-grid { display: flex; flex-direction: column; gap: 5px; }
+.vg-funil-detalhe-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.vg-funil-detalhe-nome { width: 52px; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; color: #6b6358; }
+.vg-funil-detalhe-track { flex: 1; height: 7px; border-radius: 99px; background: #efece5; overflow: hidden; }
+.vg-funil-detalhe-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg,rgba(232,114,12,.65),#E8720C); transition: width .4s; }
+.vg-funil-detalhe-item b { width: 30px; text-align: right; font-family: ui-monospace, monospace; color: #15110d; }
+@keyframes vgFade { from { opacity: 0; transform: translateY(-3px); } }
+
+/* tendência: coluna clicável — hover destaca, clique fixa o detalhe do dia */
+.vg-tend-col.clicavel { cursor: pointer; border-radius: 6px; transition: background .15s; }
+.vg-tend-col.clicavel:hover { background: #faf7f0; }
+.vg-tend-col.clicavel:hover .vg-tend-bar { filter: brightness(1.08); }
+.vg-tend-col.clicavel.aberta { background: #faf5ea; }
+.vg-tend-col.clicavel.aberta .vg-tend-bar { outline: 2px solid rgba(232,114,12,.45); outline-offset: 1px; }
+.vg-tend-detalhe { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-top: 12px; padding: 9px 14px; background: #fbf9f4; border: 1px solid #eee7db; border-left: 3px solid #E8720C; border-radius: 10px; font-size: 12.5px; color: #5a544a; animation: vgFade .2s ease-out; }
+.vg-tend-detalhe b { color: #15110d; }
+.vg-tend-detalhe .vg-up { color: #1a6b3a; } .vg-tend-detalhe .vg-down { color: #c0392b; }
+
+/* cards por corretora: linha com tooltip ganha cursor de ajuda */
+.vg-cc-row[title] { cursor: help; }
+
+.vg-mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.vg-mini { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 16px 18px; }
+.vg-mini h4 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: #8a857c; margin: 0 0 10px; }
+.vg-mini-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; padding: 4px 0; border-bottom: 1px solid #f4f1ea; }
+.vg-mini-row:last-child { border-bottom: none; }
+.vg-mini-row b { font-weight: 800; color: #15110d; }
+
+/* Card Remarketing (Pessoa12) — mesma linguagem vg-mini; taxa em destaque no rodapé. */
+.vg-remkt[title] { cursor: help; }
+.vg-remkt-taxa { display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px; padding: 8px 10px; background: #fdf3ea; border: 1px solid #f2ddc8; border-left: 3px solid #E8720C; border-radius: 8px; }
+.vg-remkt-taxa b { font-size: 18px; font-weight: 800; color: #E8720C; }
+
+/* Atividade do time (06/10) — molde do remarketing: um bloco por pergunta,
+   caixa com rótulo + número + uma linha, tabela por corretora. Texto em cor
+   normal (sem verde/vermelho de alarme). */
+.vg-at-bloco { background: #fff; border: 1px solid #e7e4dd; border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
+.vg-at-pergunta { font-size: 15px; font-weight: 800; color: #15110d; margin: 0 0 12px; }
+.vg-at-caixas { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.vg-at-caixa { border: 1px solid #ece8e0; border-radius: 12px; padding: 12px 14px; background: #fcfbf8; }
+.vg-at-rotulo { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: #8a857c; font-weight: 700; }
+.vg-at-valor { font-size: 24px; font-weight: 800; color: #15110d; margin-top: 4px; line-height: 1.1; }
+.vg-at-linha { font-size: 12px; color: #6b6358; margin-top: 4px; }
+.vg-at-nota { font-size: 12px; color: #6b6358; margin-top: 10px; }
+.vg-at-vazio { font-size: 13px; color: #6b6358; margin-top: 10px; }
+.vg-at-tabwrap { margin-top: 12px; border: 1px solid #ece8e0; border-radius: 12px; overflow-x: auto; }
+.vg-at-tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+.vg-at-tab th { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: #8a857c; font-weight: 600; text-align: right; padding: 9px 12px; border-bottom: 1px solid #ece8e0; white-space: nowrap; }
+.vg-at-tab td { padding: 8px 12px; border-bottom: 1px solid #f3f0ea; text-align: right; color: #3a342c; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.vg-at-tab th:first-child, .vg-at-tab td:first-child { text-align: left; }
+.vg-at-tab tr:last-child td { border-bottom: 0; }
+.vg-at-tab td.forte { font-weight: 700; color: #15110d; }
+.vg-at-lista { display: flex; flex-direction: column; gap: 6px; }
+.vg-at-item { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: #3a342c; padding: 6px 0; border-bottom: 1px solid #f3f0ea; }
+.vg-at-item:last-child { border-bottom: 0; }
+.vg-at-item b { font-variant-numeric: tabular-nums; color: #15110d; }
+@media (max-width: 520px) {
+  .vg-at-bloco { padding: 14px 12px; }
+  .vg-at-caixas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vg-at-valor { font-size: 21px; }
+  .vg-at-tab { table-layout: fixed; font-size: 12.5px; }
+  .vg-at-tab th { white-space: normal; font-size: 9.5px; letter-spacing: .03em; padding: 8px 5px; vertical-align: bottom; }
+  .vg-at-tab td { padding: 8px 5px; }
+  .vg-at-tab th:first-child, .vg-at-tab td:first-child { width: 26%; padding-left: 10px; overflow: hidden; text-overflow: ellipsis; }
+  /* o título do período e o seletor empilham: com "Últimos 30 dias" o seletor
+     empurrava a página pra fora da tela */
+  .hoje-head { flex-wrap: wrap; }
+  .vg-periodo { max-width: 100%; }
+}

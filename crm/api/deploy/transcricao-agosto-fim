@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""Avisa a Dona quando a fila de transcrição do mês corrente fechar.
+
+Pedido dela em 25/08/2026: "me avisa quando a fila de agosto fechar". Não é
+watch de saúde (isso é o transcricao-watch) — é um aviso de CONCLUSÃO, one-shot:
+dispara uma vez e se cala, mesmo que a fila oscile depois.
+
+Por que existe como timer e não como uma sessão esperando: a sessão termina, o
+servidor não. Aviso que depende de alguém estar acordado não é aviso.
+
+"Fechar" = nenhum áudio do mês corrente em `pendente`/`em_progresso`. O que
+sobra em `erro` é mídia expirada de verdade — não volta, e o aviso diz quanto
+foi, porque é isso que define se a análise do mês fica confiável ou não.
+"""
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+
+import psycopg
+
+DSN = os.getenv("AGOSTO_FIM_DSN",
+                "postgresql://user:CHANGE_ME@localhost:5432/copiloto")
+NOTIFY = os.getenv("AGOSTO_FIM_NOTIFY", "http://127.0.0.1:8099/api/notify")
+ESTADO = os.getenv("AGOSTO_FIM_ESTADO", "/var/lib/assistente/transcricao-agosto-fim.json")
+ENV_NOTIFY = "/opt/telegram-claude/.env"
+
+
+def token() -> str:
+    with open(ENV_NOTIFY) as f:
+        for linha in f:
+            if linha.startswith("NOTIFY_API_TOKEN="):
+                return linha.split("=", 1)[1].strip()
+    raise SystemExit("NOTIFY_API_TOKEN ausente")
+
+
+def avisa(task_id: str, texto: str) -> bool:
+    corpo = json.dumps({"task_id": task_id, "text": texto}).encode()
+    req = urllib.request.Request(
+        NOTIFY, data=corpo,
+        headers={"Authorization": "Bearer " + token(),
+                 "Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200
+    except urllib.error.URLError as e:
+        print(f"falha ao avisar: {e}", file=sys.stderr)
+        return False
+
+
+def main() -> int:
+    try:
+        with open(ESTADO) as f:
+            if json.load(f).get("avisado"):
+                print("já avisado — nada a fazer")
+                return 0
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    with psycopg.connect(DSN, connect_timeout=10) as con, con.cursor() as cur:
+        cur.execute("""
+            SELECT count(*) FILTER (WHERE transcricao_status IN ('pendente','em_progresso')),
+                   count(*) FILTER (WHERE transcricao_status = 'concluida'),
+                   count(*) FILTER (WHERE transcricao_status = 'erro'),
+                   count(*)
+              FROM mensagens_evolution
+             WHERE tipo_mensagem = 'audio'
+               AND timestamp_evolution >= date_trunc('month', now())
+        """)
+        fila, ok, erro, total = cur.fetchone()
+
+    print(f"fila={fila} ok={ok} erro={erro} total={total}")
+    if fila > 0:
+        return 0
+
+    pct = (ok / total * 100) if total else 0
+    perdidos = (
+        f"\n\n{erro} continuam sem áudio (mídia expirada na Meta, não volta) — "
+        f"{100 - pct:.0f}% do mês."
+    ) if erro else ""
+
+    if avisa(
+        "transcricao-agosto-fechou",
+        f"✅ A fila de transcrição de agosto fechou.\n\n"
+        f"{ok} de {total} áudios transcritos ({pct:.0f}%).{perdidos}\n\n"
+        "Dá pra refazer a medição de quem convida pra visita com o mês inteiro "
+        "legível — antes ela enxergava só 64% das conversas, e o convite mora "
+        "no áudio.",
+    ):
+        os.makedirs(os.path.dirname(ESTADO), exist_ok=True)
+        with open(ESTADO, "w") as f:
+            json.dump({"avisado": True, "ok": ok, "erro": erro, "total": total}, f)
+        print("avisado.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

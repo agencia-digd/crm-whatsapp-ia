@@ -1,0 +1,10 @@
+[Unit]
+Description=Copiloto — lembrete de pendência da Assistente (registro incompleto de visita/venda)
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+ExecStart=/opt/crm/.venv/bin/python scripts/lembrete_pendencia_assistente.py

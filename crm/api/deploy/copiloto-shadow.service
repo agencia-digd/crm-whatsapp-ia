@@ -1,0 +1,14 @@
+[Unit]
+Description=Copiloto — Modo Sombra (aprendiz): IA decide o que responderia, sem enviar
+After=network-online.target copiloto-api.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+ExecStart=/opt/crm/.venv/bin/python scripts/shadow_run.py --corretora 3 --dias 14
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=3600

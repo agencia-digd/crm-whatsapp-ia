@@ -1,0 +1,7 @@
+[Unit]
+Description=Copiloto Acme · avisa a Dona se a sombra do LLM parar de medir
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sombra-llm-watch

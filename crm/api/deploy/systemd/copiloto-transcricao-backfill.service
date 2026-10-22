@@ -1,0 +1,8 @@
+[Unit]
+Description=Copiloto Acme · backfill de transcrição em gotas (respeita o rate limit da Graph)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/crm/scripts/transcricao_backfill_tick.sh
+TimeoutStartSec=900

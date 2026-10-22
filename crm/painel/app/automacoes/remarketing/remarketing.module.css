@@ -1,0 +1,735 @@
+/* Página da automação de Remarketing (carrossel da Corretor). Mesma linguagem do resto do V2:
+   base areia, superfície branca, verde de acento, mono nos rótulos.
+   Sem tema escuro, sem gradiente, sem animação. */
+
+.wrap {
+  max-width: 920px;
+}
+
+/* ── voltar ── */
+.voltar {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--ink-2);
+  text-decoration: none;
+  margin-bottom: 12px;
+  padding: 6px 0;
+}
+.voltar:hover {
+  color: var(--ink-1);
+}
+
+/* ── cabeçalho da automação ── */
+.cabecalho {
+  margin-bottom: 18px;
+}
+.nome {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.gatilho {
+  margin: 4px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+.desligadoAviso {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: #7a4d00;
+  background: #fbf1e0;
+  border: 1px solid #f0e0bf;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* ── barra de período + números do topo ── */
+.resumo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+.stat {
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-width: 132px;
+}
+.statLabel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.statValor {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1.15;
+}
+.statSub {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-top: 3px;
+}
+/* falha no lote: fundo e borda inteira em vermelho claro (sem filete lateral). */
+.statAlerta {
+  background: #fcefed;
+  border-color: #efc7c2;
+  max-width: 260px;
+}
+.semDado {
+  color: var(--ink-2);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.periodo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.periodoRotulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.pill {
+  border: 1px solid var(--line);
+  background: var(--surface, #fff);
+  border-radius: 99px;
+  padding: 4px 13px;
+  min-height: 36px;
+  font-size: 14px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.pillOn {
+  background: var(--accent-soft, #e7f1ed);
+  border-color: #d5e6de;
+  color: #0a5c46;
+  font-weight: 700;
+}
+
+/* ── tabela comparativa (rola dentro do próprio container) ── */
+.tabelaWrap {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  overflow-x: auto;
+  margin-bottom: 22px;
+}
+.tabela {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tabela th {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-align: right;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.tabela th:first-child,
+.tabela td:first-child {
+  text-align: left;
+}
+.tabela td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: right;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.tabela tr:last-child td {
+  border-bottom: 0;
+}
+.taxaForte {
+  font-weight: 700;
+  color: var(--ink-1);
+}
+.celulaVazia {
+  color: var(--ink-2);
+}
+
+/* ── faixa do marco de régua (desde quando a medição conta) ── */
+.marcoBarra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+.marcoTexto {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  flex: 1;
+  min-width: 220px;
+}
+.btnRecomecar {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 36px;
+  color: var(--ink-2);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btnRecomecar:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btnRecomecar:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ── canvas: o desenho é o do mapa geral (fluxo.module.css). Aqui só as
+   classes de arranjo da fileira e do miolo dos nós. ── */
+.flow {
+  position: relative;
+  z-index: 1;
+}
+.flowLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.row {
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+}
+/* ramificação (condição) — mesma leitura do mapa geral: fileira deslocada
+   abaixo do nó que a origina. */
+.ramo {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin: 64px 0 0 340px;
+}
+.ramoCentro {
+  display: flex;
+  margin: 72px 0 0 340px;
+}
+/* rótulo de faixa — separa "saída comum" de "o que não interrompe" sem
+   depender de cor, que é o que faz o canvas virar espaguete. */
+.faixaRotulo {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #9a5b00;
+  margin: 56px 0 -8px 340px;
+}
+.tagSaida {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #7a4d00;
+  background: #fbf1e0;
+  padding: 1px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.tagFica {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #0a5c46;
+  background: #e7f1ed;
+  padding: 1px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.notaRamo {
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line-soft);
+  line-height: 1.45;
+}
+.seq {
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+/* ── métrica dentro do nó ── */
+.metricaNo {
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+.metricaLinha {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.metricaDestaque {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1.1;
+}
+.metricaSemDado {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.metricaRotulo {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.metricaDetalhe {
+  font-size: 11.5px;
+  color: var(--ink-2);
+  margin-top: 3px;
+  line-height: 1.45;
+}
+.alerta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #7a4d00;
+  background: #fbf1e0;
+  border-radius: 99px;
+  padding: 2px 9px;
+  white-space: nowrap;
+}
+
+.acaoTexto {
+  font-size: 12.3px;
+  color: var(--ink-2);
+}
+.tagCat {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  padding: 1px 8px;
+  border-radius: 99px;
+}
+.tagsNo {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+}
+.btnEditar {
+  margin-top: 10px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-2);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.btnEditar:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.editorNo {
+  margin-top: 8px;
+  border-top: 1px dashed var(--line-soft);
+  padding-top: 8px;
+}
+
+
+.nota {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  background: var(--accent-soft, #e7f1ed);
+  border: 1px solid #d5e6de;
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-bottom: 20px;
+}
+.rodape {
+  font-size: 12px;
+  color: var(--ink-2);
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
+  margin-top: 24px;
+  line-height: 1.6;
+}
+.erro {
+  font-size: 12.5px;
+  color: #a33;
+  background: #fdf5f5;
+  border: 1px solid #e6c9c9;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+.carregando {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  padding: 12px 0;
+}
+
+@media (max-width: 620px) {
+  .cabecalhoTopo {
+    flex-direction: column;
+  }
+  .chaveArea {
+    align-items: flex-start;
+  }
+  .metrica {
+    gap: 14px;
+  }
+}
+
+/* ── teste A/B das variantes ─────────────────────────────────────────────
+   Cada variante é um cartão: texto que sai, categoria, peso editável e a
+   performance. O aviso da cota fica colado no editor de peso — regra que só
+   aparece depois do erro é regra que ninguém lembra na hora de mexer. */
+.abBloco {
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+}
+.abTitulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-1);
+  margin: 0 0 4px;
+}
+.abDesc {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0 0 14px;
+  max-width: 72ch;
+}
+.abGrid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.cartaoVariante {
+  flex: 1 1 280px;
+  min-width: 260px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--bg);
+}
+.cartaoOff {
+  opacity: 0.62;
+}
+.cartaoMkt {
+  border-color: #e0a416;
+}
+.varTopo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.varId {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-1);
+}
+.varTexto {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.varAviso {
+  font-size: 11px;
+  color: #7a4d00;
+  background: #fbf1e0;
+  border: 1px solid #f0e0bf;
+  border-radius: 7px;
+  padding: 6px 9px;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.varNumeros {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.varTaxa {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1.1;
+}
+.varDetalhe {
+  font-size: 11.5px;
+  color: var(--ink-2);
+  margin-top: 3px;
+  line-height: 1.45;
+}
+.pesoLinha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.pesoRotulo {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.pesoInput {
+  width: 70px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--ink-1);
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 4px 8px;
+}
+.pesoInput:disabled {
+  opacity: 0.55;
+}
+.pesoTravado {
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.somaBarra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line-soft);
+}
+.somaTexto {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  flex: 1;
+  min-width: 240px;
+  line-height: 1.5;
+}
+.somaOk {
+  color: #0a5c46;
+  font-weight: 700;
+}
+.somaRuim {
+  color: #a33;
+  font-weight: 700;
+}
+.btnSalvarPesos {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: #fff;
+  background: var(--accent, #0a5c46);
+  border: 1px solid var(--accent, #0a5c46);
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.btnSalvarPesos:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.ritmoBarra {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* ── front novo (05/10): títulos de seção e o "como funciona" recolhido ── */
+.secaoTitulo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 8px 0 14px;
+}
+/* o desenho aberto: legenda curta, quatro desfechos lado a lado */
+.fluxoLegenda {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin: -6px 0 12px;
+}
+/* no computador o desenho cabe inteiro; a dica de arrastar é só do celular */
+.fluxoArraste { display: none; }
+@media (max-width: 1100px) {
+  .fluxoArraste { display: inline; }
+}
+.faixaDesfechos {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #9a5b00;
+  margin: 72px 0 16px;
+}
+.desfechos {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.desfecho {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.listaNo {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.listaNo li + li { margin-top: 3px; }
+.comoFunciona {
+  margin: 28px 0 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.comoFunciona summary {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+.comoFunciona summary::-webkit-details-marker { display: none; }
+.comoFunciona summary::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--ink-2);
+  border-bottom: 2px solid var(--ink-2);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+.comoFunciona[open] summary::before { transform: rotate(45deg); }
+.comoFunciona summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 820px) {
+  .resumo { display: grid; grid-template-columns: 1fr 1fr; }
+  .resumo .stat { min-width: 0; }
+  .ritmoBarra { display: grid; grid-template-columns: 1fr 1fr; }
+  .ritmoBarra .stat { min-width: 0; max-width: none; }
+}
+
+/* ── respostas por tipo (junção com o motor, 05/10/2026) ──
+   Um cartão só, seis números. Os que entram na taxa ganham o fundo do acento;
+   os de fora ficam neutros. Sem vermelho: recusa não é erro, é resposta. */
+.tipos {
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px 14px;
+  margin-bottom: 14px;
+}
+.tiposTitulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+}
+.tiposNota {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.tiposGrade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 8px;
+}
+.tipo {
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--line-soft);
+  min-width: 0;
+}
+.tipoConta { background: var(--accent-soft); }
+.tipo dt { font-size: 13px; color: var(--ink-2); }
+.tipo dd {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 820px) {
+  .tiposGrade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Celular: alvo de toque de 44 px no período, no "recomeçar" e no voltar
+   (auditoria de 06/10/2026). */
+@media (max-width: 820px) {
+  .pill,
+  .btnRecomecar { min-height: 44px; }
+  .voltar { display: inline-flex; align-items: center; min-height: 44px; }
+}

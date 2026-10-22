@@ -1,0 +1,32 @@
+{
+  "name": "Acme Imóveis",
+  "short_name": "Acme",
+  "description": "Painel da corretora — leads, agenda e conversas.",
+  "start_url": "/meu-dia",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icon-192-v2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

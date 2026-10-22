@@ -1,0 +1,7 @@
+[Unit]
+Description=Copiloto Acme · avisa a Dona quando a fila de transcrição do mês fechar (one-shot)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/transcricao-agosto-fim

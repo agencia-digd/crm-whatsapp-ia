@@ -1,0 +1,10 @@
+[Unit]
+Description=Backfill de transcrição a cada 15 min (incidente 25/08/2026: 12 workers estouraram a cota da Meta)
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

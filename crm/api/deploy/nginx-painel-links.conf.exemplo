@@ -1,0 +1,21 @@
+# Acesso por LINK (cookie) além do usuário/senha — Acme V2.
+# Motivo: corretora no celular tropeça no basic auth (maiúscula automática no
+# usuário, corretor automático na senha, e o navegador dentro do WhatsApp às
+# vezes nem mostra a caixa de login). Com o link ela entra em 1 toque.
+#
+# Como funciona: /entrar?k=<token> grava o cookie painel_key. O map abaixo
+# transforma um cookie CONHECIDO em (a) basic auth desligado e (b) o usuário
+# correspondente no header X-Auth-User. Cookie desconhecido/ausente = cai no
+# basic auth normal. Nunca dá pra escalar: o map só conhece token->usuário fixo.
+map $cookie_painel_key $corretor_realm {
+    "<TOKEN_GERADO_COM_openssl_rand_hex_20>"  off;
+    "<TOKEN_GERADO_COM_openssl_rand_hex_20>"  off;
+    "<TOKEN_GERADO_COM_openssl_rand_hex_20>"  off;
+    default "Acme V2";
+}
+map $cookie_painel_key $corretor_usuario {
+    "<TOKEN_GERADO_COM_openssl_rand_hex_20>"  "corretor";
+    "<TOKEN_GERADO_COM_openssl_rand_hex_20>"  "corretor";
+    "<TOKEN_GERADO_COM_openssl_rand_hex_20>"  "corretor";
+    default $remote_user;
+}

@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-copiloto}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-copiloto}
+      POSTGRES_DB: ${POSTGRES_DB:-copiloto}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-copiloto}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-copiloto}:${POSTGRES_PASSWORD:-copiloto}@postgres:5432/${POSTGRES_DB:-copiloto}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app
+
+volumes:
+  postgres_data:

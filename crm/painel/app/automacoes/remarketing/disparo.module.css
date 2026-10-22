@@ -1,0 +1,519 @@
+/* Painel do disparo (front novo, 05/10/2026).
+   Hierarquia: o ESTADO manda (cor de fundo do bloco de cima, título grande,
+   interruptor de 44 px). As quatro respostas vêm logo abaixo, no mesmo bloco.
+   O resto da página é mais quieto de propósito.
+   Cores de estado: as mesmas da bolinha de saúde que o painel já usava. */
+
+.estado,
+.ajustes {
+  --ok: #1f8a4c;
+  --ok-fundo: #e8f3ec;
+  --ok-borda: #c9e2d2;
+  --atencao: #b87a0a;
+  --atencao-fundo: #fcefd4;
+  --atencao-borda: #ecd29b;
+  --ruim: #b3261e;
+  --ruim-fundo: #fcefed;
+  --ruim-borda: #efc7c2;
+  --neutro: #8a857c;
+}
+
+/* ── bloco do estado ───────────────────────────────────────────────── */
+.estado {
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+.tom_saindo { background: var(--ok-fundo); border-color: var(--ok-borda); }
+.tom_parado { background: var(--atencao-fundo); border-color: var(--atencao-borda); }
+.tom_desligado,
+.tom_sem { background: var(--surface); }
+
+.estadoTopo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px 20px;
+}
+.estadoTexto { min-width: 0; }
+.estadoTitulo {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.estadoPonto {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--neutro);
+}
+.tom_saindo .estadoPonto { background: var(--ok); box-shadow: 0 0 0 5px color-mix(in srgb, var(--ok) 18%, transparent); }
+.tom_parado .estadoPonto { background: var(--atencao); }
+.tom_saindo .estadoTitulo { color: #135c33; }
+.tom_parado .estadoTitulo { color: #7a4f00; }
+.estadoFrase {
+  margin-top: 8px;
+  font-size: 16px;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+.estadoChave {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.chaveRotulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.respostas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+}
+.resposta {
+  padding: 16px 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.resposta + .resposta { border-left: 1px solid color-mix(in srgb, var(--ink) 9%, transparent); }
+.resposta dt {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.respostaValor {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.respostaSub { font-size: 14px; color: var(--ink-2); }
+.respostaRuim { background: var(--ruim-fundo); }
+.respostaRuim .saudeLinha { color: var(--ruim); font-weight: 600; }
+.de { font-size: 15px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
+.saudeLinha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.estadoRodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  padding: 10px 28px 14px;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  font-size: 13px;
+}
+
+/* ── bolinha de saúde ──────────────────────────────────────────────── */
+.bolinha {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #c4bfb6;
+}
+.bolinhaGrande { width: 16px; height: 16px; }
+.cor_verde { background: var(--ok); }
+.cor_amarelo { background: #e0a416; }
+.cor_vermelho { background: var(--ruim); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ruim) 16%, transparent); }
+/* sem leitura: anel vazio — cinza cheio pareceria "linha ok, só apagada" */
+.cor_desconhecida { background: transparent; border: 2px dashed #b9b5ad; }
+
+/* ── barra de consumo ──────────────────────────────────────────────── */
+.barra {
+  height: 6px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--ink) 9%, transparent);
+  overflow: hidden;
+  margin: 4px 0 2px;
+}
+.barraCheia { height: 100%; background: var(--accent); border-radius: 99px; }
+.barraFim { background: var(--atencao); }
+
+/* ── ajustes ───────────────────────────────────────────────────────── */
+.ajustes { margin-bottom: 40px; }
+/* reserva o lugar da barra quando ela sai do fluxo (fixa no rodapé) */
+.ajustesComMudanca { padding-bottom: 72px; }
+.ajustesTitulo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 14px;
+}
+.grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.bloco {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.blocoTitulo {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.campo {
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  min-height: 44px;
+  width: 100%;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+.campo:focus-visible,
+.dia:focus-visible,
+.btnSec:focus-visible,
+.btnPrimario:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+select.campo { cursor: pointer; }
+.rotulo { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+
+.contagem { font-size: 15px; color: var(--ink-2); }
+.contagem strong { color: var(--ink); font-size: 18px; font-variant-numeric: tabular-nums; }
+.dica { font-size: 13px; color: var(--ink-2); }
+.aviso {
+  font-size: 14px;
+  color: #6e4600;
+  background: var(--atencao-fundo);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.erroTexto { font-size: 14px; color: var(--ruim); }
+
+/* dias */
+.dias { display: flex; flex-wrap: wrap; gap: 6px; }
+.dia {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 48px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.dia:hover { border-color: var(--ink-3); }
+.diaOn { background: var(--ink); border-color: var(--ink); color: #fff; }
+.diaOn:hover { border-color: var(--ink); }
+.horario {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+/* limites */
+.limites { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.limite { display: flex; flex-direction: column; gap: 6px; }
+
+/* botões */
+.btnPrimario {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+.btnPrimario:disabled { opacity: 0.4; cursor: not-allowed; }
+.btnSec {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btnSec:hover { border-color: var(--ink-3); }
+.btnSec:disabled { opacity: 0.5; cursor: wait; }
+.link {
+  font: inherit;
+  font-size: 13px;
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.link:disabled { opacity: 0.5; cursor: wait; }
+
+/* barra de salvar: só ganha corpo quando há mudança, e aí gruda no rodapé */
+.salvarBarra {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 10px 0;
+}
+/* fixed, não sticky: o `overflow-x: hidden` do body (globals.css) faz do body
+   um contêiner de rolagem que nunca rola, e aí sticky não gruda. */
+.salvarBarraAtiva {
+  position: fixed;
+  bottom: 16px;
+  left: calc(var(--sidebar-w) + 40px);
+  width: min(920px, calc(100vw - var(--sidebar-w) - 80px));
+  margin-top: 0;
+  z-index: 60;
+  padding: 10px 12px 10px 18px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(31, 29, 26, 0.18);
+}
+.salvarTexto {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.salvarBarraAtiva .salvarTexto { color: #fff; }
+.salvarNota { font-size: 13px; font-weight: 400; color: var(--ink-2); }
+.salvarBarraAtiva .salvarNota { color: #cfcac1; }
+.salvarBarraAtiva .link { color: #e9e5de; }
+.salvarBarraAtiva .btnPrimario { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* ── quando a pessoa responde (05/10): mesmo desenho dos blocos de cima ── */
+.responde { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.respondeTitulo { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.blocoLargo { grid-column: 1 / -1; }
+.opcoes { display: flex; flex-direction: column; gap: 8px; }
+.opcao {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.opcao:hover { border-color: var(--ink-3); }
+.opcaoOn { background: var(--ink); border-color: var(--ink); color: #fff; }
+.opcaoOn:hover { border-color: var(--ink); }
+.opcao:focus-visible,
+.roletaItem:focus-within,
+.marcar:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.tagRmkt {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #8a4a6b;
+  background: #f7eef3;
+  border-radius: 6px;
+  padding: 2px 8px;
+  vertical-align: 1px;
+}
+.roleta { display: flex; flex-direction: column; gap: 6px; }
+.roletaItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.roletaItemOn { border-color: var(--ink-3); }
+.roletaItem input,
+.marcar input { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+.roletaNome { font-weight: 600; color: var(--ink); min-width: 0; overflow-wrap: anywhere; }
+.roletaConta { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.marcar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 15px;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.avisoGrade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.avisoCampo { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.linkEsquerda { align-self: flex-start; text-align: left; }
+.respondeSalvar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 4px 0 0;
+}
+
+/* ── celular ───────────────────────────────────────────────────────── */
+@media (max-width: 1100px) and (min-width: 821px) {
+  .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 820px) {
+  .avisoGrade { grid-template-columns: minmax(0, 1fr); }
+  .respondeSalvar { flex-wrap: wrap; }
+  .estadoTopo { padding: 18px 16px 16px; gap: 14px; align-items: flex-start; }
+  .estadoTitulo { font-size: 20px; gap: 10px; }
+  .estadoFrase { font-size: 15px; }
+  .respostas { grid-template-columns: 1fr 1fr; }
+  .resposta { padding: 12px 16px 14px; }
+  .resposta + .resposta { border-left: 0; }
+  .resposta:nth-child(even) { border-left: 1px solid color-mix(in srgb, var(--ink) 9%, transparent); }
+  .resposta:nth-child(n + 3) { border-top: 1px solid color-mix(in srgb, var(--ink) 9%, transparent); }
+  .respostaValor { font-size: 16px; }
+  .estadoRodape { padding: 10px 16px 12px; }
+  .grade { grid-template-columns: 1fr; }
+  .bloco { padding: 16px 14px 14px; }
+  /* acima do botão flutuante da Assistente (54 px a 22 px do canto) */
+  .salvarBarraAtiva { bottom: 88px; left: 14px; right: 14px; width: auto; }
+  .salvarBarraAtiva { gap: 12px; }
+  .salvarTexto { font-size: 14px; }
+  .salvarNota { font-size: 12px; }
+  .btnSec { min-height: 44px; }
+  .link { min-height: 44px; }
+}
+@media (max-width: 380px) {
+  .limites { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .barraCheia { transition: width 0.4s ease; }
+}
+
+/* ── junção com o motor (05/10/2026) ───────────────────────────────────
+   Faixa "hoje, na Meta" dentro do bloco de estado: aceitos e entregues lado
+   a lado, e a última volta do robô. Mais quieta que as quatro respostas. */
+.conferencia {
+  --ok: #1f8a4c;
+  --atencao: #b87a0a;
+  --atencao-fundo: #fcefd4;
+  --ruim: #b3261e;
+  margin-bottom: 28px;
+}
+.faixaHoje {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+}
+.faixaGrupo {
+  padding: 12px 28px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.faixaGrupo + .faixaGrupo { border-left: 1px solid color-mix(in srgb, var(--ink) 9%, transparent); }
+.faixaRotulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.faixaNumeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+  font-size: 15px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.faixaNumeros strong { color: var(--ink); font-size: 17px; }
+.faixaRuim { color: var(--ruim); font-weight: 600; }
+
+.confGrade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+.confNumeros {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.confNumeros dt { font-size: 12px; font-weight: 600; color: var(--ink-2); }
+.confNumeros dd {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 820px) {
+  .faixaHoje { grid-template-columns: 1fr; }
+  .faixaGrupo { padding: 10px 16px 12px; }
+  .faixaGrupo + .faixaGrupo {
+    border-left: 0;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
+  }
+  .confGrade { grid-template-columns: 1fr; }
+  .confNumeros { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

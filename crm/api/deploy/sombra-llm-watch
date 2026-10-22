@@ -1,0 +1,174 @@
+#!/usr/bin/env python3
+"""sombra-llm-watch — avisa a Dona quando a sombra do LLM está medindo nada.
+
+POR QUE EXISTE
+
+O ShadowProvider tem um contrato deliberado: "qualquer falha do sombra é
+engolida (ele é experimento, não operação)". Isso protege a corretora — o
+candidato nunca derruba a produção — mas cria um ponto cego: uma sombra
+100% quebrada é indistinguível de uma sombra saudável, porque nada reclama.
+
+Foi exatamente o que aconteceu com o Qwen. Entre 28 e 31/08/2026 rodaram 106
+duelos, TODOS com HTTP 401 `invalid_api_key`: a chave da casa é de um workspace
+MaaS dedicado, e o .env apontava pro dashscope-intl compartilhado. Quatro dias
+achando que estávamos medindo qualidade, sem um único duelo válido — e a
+decisão de migrar (ou não) o copiloto pro Alibaba esperando um placar que não
+existia.
+
+O check olha o RESULTADO (duelo válido saiu?), não o processo. Serviço no ar e
+timer verde não provam medição acontecendo — a lição do [[corretor-falha-watch]].
+
+DOIS SINTOMAS
+
+  1. SOMBRA CEGA — houve duelos na janela e a maioria falhou. É chave errada,
+     endpoint errado, cota estourada, modelo que sumiu do catálogo.
+  2. SOMBRA MUDA — a flag está ligada mas não saiu duelo nenhum na janela.
+     É o cap diário zerado, o Inspector sem rodar, ou o candidato nem subindo
+     (ex.: `_candidato_sombra()` devolvendo None por chave vazia — que loga
+     warning e segue, porque também é fail-open por contrato).
+
+Avisa uma vez por sintoma e só volta a avisar quando normaliza e quebra de novo.
+"""
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+from datetime import datetime, timedelta, timezone
+
+JSONL = os.getenv("SOMBRA_WATCH_JSONL", "/opt/copiloto/shadow_llm.jsonl")
+FLAG = os.getenv("SOMBRA_WATCH_FLAG", "/opt/copiloto/.shadow_llm_on")
+NOTIFY = os.getenv("SOMBRA_WATCH_NOTIFY", "http://127.0.0.1:8099/api/notify")
+ESTADO = os.getenv("SOMBRA_WATCH_ESTADO", "/var/lib/assistente/sombra-llm-watch.json")
+ENV_NOTIFY = "/opt/telegram-claude/.env"
+
+# Janela de avaliação. O Inspector roda algumas vezes ao dia e o cap é de 30
+# duelos/dia: 24h é o menor intervalo em que "zero duelo" significa alguma coisa.
+JANELA_H = 24
+# Acima disto a sombra não está medindo, está colecionando erro. Não é 100% de
+# propósito: rate limit ocasional é normal e não deve acordar ninguém.
+FALHA_PCT = 50
+# Abaixo disto a amostra é pequena demais pra concluir taxa de falha.
+MIN_DUELOS = 5
+
+
+def carrega() -> dict:
+    try:
+        with open(ESTADO) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def salva(estado: dict) -> None:
+    os.makedirs(os.path.dirname(ESTADO), exist_ok=True)
+    tmp = ESTADO + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(estado, f)
+    os.replace(tmp, ESTADO)
+
+
+def token() -> str:
+    with open(ENV_NOTIFY) as f:
+        for linha in f:
+            if linha.startswith("NOTIFY_API_TOKEN="):
+                return linha.split("=", 1)[1].strip()
+    raise SystemExit("NOTIFY_API_TOKEN ausente")
+
+
+def avisa(task_id: str, texto: str) -> bool:
+    corpo = json.dumps({"task_id": task_id, "text": texto}).encode()
+    req = urllib.request.Request(
+        NOTIFY, data=corpo,
+        headers={"Authorization": "Bearer " + token(),
+                 "Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200
+    except urllib.error.URLError as e:
+        print(f"falha ao avisar: {e}", file=sys.stderr)
+        return False
+
+
+def le_janela() -> tuple[int, int, str, str]:
+    """Devolve (total, falhas, rotulo_predominante, erro_exemplo) da janela."""
+    corte = datetime.now(timezone.utc) - timedelta(hours=JANELA_H)
+    total = falhas = 0
+    rotulos: dict[str, int] = {}
+    exemplo = ""
+    try:
+        f = open(JSONL, errors="ignore")
+    except OSError:
+        return 0, 0, "", ""
+    with f:
+        for linha in f:
+            if '"ts"' not in linha:
+                continue
+            try:
+                d = json.loads(linha)
+            except json.JSONDecodeError:
+                continue
+            ts = d.get("ts") or ""
+            try:
+                if datetime.fromisoformat(ts) < corte:
+                    continue
+            except ValueError:
+                continue
+            total += 1
+            rotulos[d.get("rotulo") or "?"] = rotulos.get(d.get("rotulo") or "?", 0) + 1
+            if not d.get("sombra_ok"):
+                falhas += 1
+                if not exemplo:
+                    exemplo = (d.get("sombra_erro") or "")[:180]
+    rotulo = max(rotulos, key=lambda k: rotulos[k]) if rotulos else ""
+    return total, falhas, rotulo, exemplo
+
+
+def main() -> int:
+    ligada = os.path.exists(FLAG)
+    total, falhas, rotulo, exemplo = le_janela()
+    estado = carrega()
+
+    pct = round(falhas / total * 100) if total else 0
+    cega = total >= MIN_DUELOS and pct >= FALHA_PCT
+    muda = ligada and total == 0
+
+    if cega and not estado.get("cega"):
+        avisa("sombra-llm-cega",
+              f"🕶️ A sombra do LLM está medindo nada.\n\n"
+              f"Candidato: {rotulo}\n"
+              f"{falhas} de {total} duelos falharam nas últimas {JANELA_H}h ({pct}%).\n\n"
+              f"Erro: {exemplo}\n\n"
+              "Falha de sombra é engolida por contrato — sem este aviso, o placar "
+              "fica vazio e ninguém percebe. Foi assim que 106 duelos do Qwen "
+              "morreram em 401 entre 28 e 31/08.\n\n"
+              "Checar: chave e MODELSTUDIO_BASE_URL no .env do copiloto-api.")
+    elif not cega and estado.get("cega"):
+        avisa("sombra-llm-ok",
+              f"✅ A sombra do LLM voltou a medir.\n\n"
+              f"Candidato: {rotulo} · {total - falhas} de {total} duelos válidos "
+              f"nas últimas {JANELA_H}h.")
+
+    if muda and not estado.get("muda"):
+        avisa("sombra-llm-muda",
+              f"🔇 A sombra do LLM está ligada mas não produziu nenhum duelo "
+              f"nas últimas {JANELA_H}h.\n\n"
+              "Pode ser o Inspector sem rodar, o cap diário zerado, ou o "
+              "candidato não subindo (chave vazia faz `_candidato_sombra()` "
+              "devolver None, logar warning e seguir).\n\n"
+              "Checar: journalctl -u copiloto-api | grep -i sombra")
+
+    estado["cega"] = cega
+    estado["muda"] = muda
+    salva(estado)
+
+    print(f"duelos={total} falhas={falhas} ({pct}%) rotulo={rotulo or '-'} "
+          f"ligada={ligada} cega={cega} muda={muda}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

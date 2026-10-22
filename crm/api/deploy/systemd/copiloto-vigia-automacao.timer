@@ -1,0 +1,10 @@
+[Unit]
+Description=Copiloto — vigia de automação dormindo: tick a cada 10 min
+
+[Timer]
+OnCalendar=*:0/10
+AccuracySec=30s
+Persistent=false
+
+[Install]
+WantedBy=timers.target

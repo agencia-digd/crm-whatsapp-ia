@@ -1,0 +1,636 @@
+/* Acme V2 — base neutra clara, tipografia como protagonista. */
+
+:root {
+  --bg: #f7f6f3;          /* areia clara */
+  --surface: #ffffff;
+  --ink: #1f1d1a;
+  --ink-2: #6b675f;       /* texto secundário */
+  --ink-3: #a39e93;       /* texto terciário / labels */
+  --line: #e6e3dc;
+  --line-soft: #efece6;
+  --accent: #0a5c46;      /* verde profundo — único acento */
+  --accent-soft: #e7f1ed;
+  --radius: 10px;
+  --sidebar-w: 224px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Shell ─────────────────────────────────────────────────────────── */
+.shell { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+  padding: 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  /* A lista de módulos é mais alta que a tela. Como CRM e Chat travam a
+     rolagem da PÁGINA (senão sobra a faixa branca embaixo), a barra geral
+     deixou de resolver aqui — a coluna rola por dentro. Vale em todas as
+     telas: o menu é o mesmo, e rolar só o menu é o comportamento esperado.
+     `overscroll-behavior` impede que, ao chegar no fim do menu, a rolagem
+     "vaze" e comece a mexer no conteúdo do lado. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.brand { display: flex; align-items: baseline; gap: 8px; padding: 0 8px; }
+.brand-name { font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+.brand-tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+
+.nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--ink-2);
+  transition: background 0.12s, color 0.12s;
+}
+.nav-item:hover { background: var(--line-soft); color: var(--ink); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.nav-dot { width: 6px; height: 6px; border-radius: 99px; background: currentColor; opacity: 0.55; }
+/* contador verde "lead respondeu na cadência" (aviso in-app, blueprint B4) */
+.nav-badge-verde {
+  margin-left: auto;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 99px;
+  background: #1a7f37;
+  color: #fff;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-foot { margin-top: auto; padding: 0 8px; display: flex; flex-direction: column; gap: 8px; }
+.viewer-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--line-soft, #f3ece3);
+  border: 1px solid var(--line, #e8ddd0);
+}
+.viewer-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted, #8a7d6e);
+}
+.viewer-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink, #221f1a);
+}
+.btn-sair {
+  display: block;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: #221f1a;
+  text-decoration: none;
+}
+.btn-sair:hover { background: #E8720C; color: #fff; }
+.construcao {
+  font-size: 12px;
+  color: var(--ink-3);
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
+  line-height: 1.6;
+}
+
+.main { flex: 1; padding: 36px 40px 48px; min-width: 0; }
+
+/* ── Home ──────────────────────────────────────────────────────────── */
+.home { max-width: 620px; margin-top: 8vh; }
+.home h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+.home p.lead { color: var(--ink-2); margin-bottom: 32px; }
+
+.mod-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.mod-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(31, 29, 26, 0.05); }
+.mod-card .mod-title { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.mod-card .mod-desc { color: var(--ink-2); font-size: 13.5px; margin-top: 4px; }
+.mod-card .mod-go { color: var(--accent); font-size: 13px; margin-top: 12px; font-weight: 500; }
+
+/* ── Página CRM / kanban ───────────────────────────────────────────── */
+.page-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px; gap: 16px; flex-wrap: wrap; }
+.page-head h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.page-meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.board {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  align-items: flex-start;
+  padding-bottom: 16px;
+}
+.col {
+  width: 264px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.col-head .col-nome { font-size: 13px; font-weight: 600; }
+.col-head .col-total {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  background: var(--line-soft);
+  padding: 1px 7px;
+  border-radius: 99px;
+}
+.col-cards { padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 48px; }
+.col-vazia { font-size: 12px; color: var(--ink-3); text-align: center; padding: 10px 0 14px; }
+
+.card {
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--bg);
+}
+.card .card-nome { font-size: 13.5px; font-weight: 600; }
+.card .card-sub { font-size: 12px; color: var(--ink-2); margin-top: 2px; display: flex; gap: 8px; flex-wrap: wrap; }
+.card .card-linha { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; align-items: center; }
+.card .card-tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  padding: 1px 7px;
+  border-radius: 99px;
+}
+.card .card-corretora {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 1px 7px;
+  border-radius: 99px;
+}
+.card .card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+}
+.card .card-entrada { color: var(--ink-3); }
+
+/* dias parado — destaque: >7d laranja, >30d vermelho */
+.dias { padding: 1px 7px; border-radius: 99px; font-weight: 600; }
+.dias.ok   { color: var(--ink-3); background: var(--line-soft); font-weight: 500; }
+.dias.warn { color: #9a5b00; background: #fbf1e0; }
+.dias.crit { color: #b3261e; background: #fdecea; }
+
+/* ── Filtro por corretora (admin) ──────────────────────────────────── */
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.filtro-pill {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, color 0.12s;
+}
+.filtro-pill:hover { border-color: var(--accent); color: var(--accent); }
+.filtro-pill.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── Estados vazio / erro ──────────────────────────────────────────── */
+.estado {
+  margin-top: 12vh;
+  text-align: center;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.estado .estado-glifo {
+  width: 56px; height: 56px;
+  border: 1px dashed var(--ink-3);
+  border-radius: 16px;
+  margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-3);
+  font-size: 22px;
+}
+.estado h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+.estado p { color: var(--ink-2); font-size: 13.5px; }
+.estado .estado-meta {
+  margin-top: 18px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* ── Aviso de lead novo (Web Push) ──────────────────────────────────── */
+.aviso-card {
+  margin: 0 8px 12px;
+  padding: 14px;
+  background: var(--accent-soft);
+  border: 1px solid #cfe3db;
+  border-radius: var(--radius);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.aviso-card b { display: block; margin-bottom: 6px; font-size: 13.5px; }
+.aviso-card p { color: var(--ink-2); }
+.aviso-card ol { margin: 8px 0 0 16px; color: var(--ink-2); }
+.aviso-card li { margin-bottom: 5px; }
+.aviso-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.aviso-btn:disabled { opacity: 0.6; cursor: progress; }
+.aviso-acoes { display: flex; align-items: center; gap: 10px; }
+.aviso-acoes .aviso-btn { flex: 1; }
+.aviso-link {
+  background: none; border: 0; padding: 0; margin-top: 10px;
+  color: var(--ink-3); font: inherit; font-size: 12px;
+  text-decoration: underline; cursor: pointer;
+}
+.aviso-msg { margin-top: 9px; color: var(--accent); font-weight: 600; }
+
+/* ── Celular ────────────────────────────────────────────────────────────
+   O painel nasceu só pra desktop: sidebar de 224px fixos e nenhuma media
+   query. Num iPhone isso deixava menos de 170px pro conteúdo. Aqui a
+   sidebar vira gaveta e o conteúdo ocupa a tela inteira.                  */
+.topo-mobile { display: none; }
+.menu-fundo { display: none; }
+
+@media (max-width: 820px) {
+  .shell { display: block; }
+
+  .topo-mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    height: 54px;
+    padding: 0 14px;
+    padding-top: env(safe-area-inset-top);
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-btn {
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface);
+    font-size: 17px;
+    cursor: pointer;
+  }
+  .topo-marca { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; }
+  .topo-marca em {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-style: normal; font-size: 11px;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 1px 6px; border-radius: 99px; margin-left: 4px;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 60;
+    width: min(280px, 84vw);
+    height: 100dvh;
+    overflow-y: auto;
+    padding-top: calc(20px + env(safe-area-inset-top));
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.14);
+  }
+  body.menu-aberto .sidebar { transform: none; }
+
+  .menu-fundo {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    border: 0;
+    background: rgba(31, 29, 26, 0.4);
+  }
+
+  .main { padding: 16px 14px 90px; }
+
+  /* Alvo de toque: nada de item de menu com 28px de altura no celular. */
+  .nav-item { padding: 12px 10px; }
+
+  /* Tabela larga não quebra o layout — rola sozinha. */
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* ── Tela do lead (abre da notificação) ─────────────────────────────────
+   Desenhada pro polegar: a corretora chega aqui com o celular na mão e
+   precisa decidir em segundos. Botão de ligar primeiro e maior.          */
+.lead-tela {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 8px 4px 40px;
+  text-align: center;
+}
+.lead-tag {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+}
+.lead-nome {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.lead-tel {
+  display: inline-block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 17px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+}
+.lead-meta { font-size: 13px; color: var(--ink-3); }
+.lead-acoes { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; }
+.lead-btn {
+  display: block;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.lead-btn-forte {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-size: 18px;
+  padding: 19px;
+}
+.lead-btn-fraco { border: 0; background: none; color: var(--ink-2); font-weight: 400; }
+.lead-dica { margin-top: 22px; font-size: 12.5px; color: var(--ink-3); }
+.lead-vazio { color: var(--ink-2); margin: 40px 0 20px; }
+
+/* 📞 Ligar no cabeçalho da conversa: só no celular — no desktop o `tel:`
+   não leva a lugar nenhum útil. */
+.toolLigar { display: none; }
+@media (max-width: 820px) {
+  .toolLigar { display: inline-flex; align-items: center; }
+}
+
+/* ── Rede contra deslize lateral no celular ─────────────────────────────
+   Uma barra de filtros ou uma tabela larga empurrava a página inteira pro
+   lado — no iPhone isso dá a sensação de que o app "escorrega". Prender a
+   largura aqui resolve na raiz, e cada tela que precisar rolar na horizontal
+   faz isso no próprio container (ex.: `table` acima). */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+@media (max-width: 820px) {
+  /* Nada dentro do conteúdo pode ser mais largo que a tela. */
+  .main img, .main pre, .main video { max-width: 100%; height: auto; }
+}
+
+/* ── 🏠 Captação de imóveis ─────────────────────────────────────────────
+   A tela é preenchida do celular, no meio da conversa com o dono. Por isso
+   o formulário nasce aberto, os campos obrigatórios ficam na primeira linha
+   e o resto vive atrás de "mais detalhes". */
+.cap-erro {
+  background: #fdf0ee; border: 1px solid #f0cdc6; color: #8c3b2a;
+  border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; font-size: 13.5px;
+}
+.cap-form {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px 22px; margin-bottom: 20px;
+}
+.cap-form-titulo { font-weight: 600; font-size: 15px; }
+.cap-form-sub { color: var(--ink-2); font-size: 13px; margin: 4px 0 16px; }
+.cap-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px;
+}
+.cap-extra { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.cap-campo { display: flex; flex-direction: column; gap: 4px; }
+.cap-campo > span { font-size: 12px; font-weight: 600; color: var(--ink-2); }
+.cap-campo input, .cap-campo select, .cap-campo textarea {
+  border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px;
+  font: inherit; font-size: 14px; background: #fff; color: var(--ink); width: 100%;
+}
+.cap-campo input:focus, .cap-campo select:focus, .cap-campo textarea:focus {
+  outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
+}
+.cap-campo textarea { resize: vertical; }
+.cap-mini { max-width: 130px; }
+.cap-larga { grid-column: 1 / -1; }
+.cap-preview { font-size: 12px; color: var(--accent); font-style: normal; font-weight: 600; }
+.cap-toggle {
+  background: none; border: none; color: var(--accent); font-size: 13px;
+  font-weight: 600; padding: 12px 0 0; cursor: pointer;
+}
+.cap-toggle:hover { text-decoration: underline; }
+.cap-checks { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px; }
+.cap-check { display: flex; align-items: center; gap: 6px; font-size: 13.5px; }
+.cap-acoes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.cap-salvar {
+  background: var(--accent); color: #fff; border: none; border-radius: 10px;
+  padding: 11px 22px; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer;
+}
+.cap-salvar:disabled { opacity: .45; cursor: not-allowed; }
+.cap-dica { font-size: 12.5px; color: var(--ink-3); }
+
+.cap-ok {
+  background: #f1f8f3; border: 1px solid #c8e3d0; color: #2c5c3d;
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; font-size: 14px;
+}
+.cap-avisos { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: #7a5a17; }
+.cap-fotos { display: inline-block; margin-top: 10px; }
+.cap-fotos-botao {
+  display: inline-block; border: 1px solid #c8e3d0; border-radius: 10px;
+  padding: 8px 14px; background: #fff; font-size: 13.5px; font-weight: 600;
+  color: #2c5c3d; cursor: pointer;
+}
+
+.cap-filtros { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.cap-busca { flex: 1 1 260px; }
+.cap-filtros input, .cap-filtros select {
+  border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px;
+  font: inherit; font-size: 13.5px; background: #fff; color: var(--ink);
+}
+.cap-vazio { color: var(--ink-2); font-size: 14px; padding: 28px 4px; }
+
+.cap-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
+.cap-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;
+}
+.cap-capa { width: 100%; height: 150px; object-fit: cover; display: block; background: var(--surface-2, #f4f1ed); }
+.cap-sem-foto {
+  display: grid; place-items: center; color: var(--ink-3); font-size: 12.5px;
+  background: repeating-linear-gradient(45deg, #f7f4f0, #f7f4f0 9px, #f2eee9 9px, #f2eee9 18px);
+}
+.cap-card-corpo { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.cap-card-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.cap-card-topo h3 { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
+.cap-preco { font-size: 15px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+.cap-card-meta { font-size: 13px; color: var(--ink-2); }
+.cap-card-dono { font-size: 13px; color: var(--ink-2); }
+.cap-card-dono a { color: var(--accent); text-decoration: none; }
+.cap-card-dono a:hover { text-decoration: underline; }
+.cap-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.cap-tag, .cap-sit {
+  font-size: 11.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--ink-2);
+}
+.cap-sit-disponivel { background: #eef7f0; border-color: #c8e3d0; color: #2c5c3d; }
+.cap-sit-vendido { background: #eef2fa; border-color: #ccd8ee; color: #34507f; }
+.cap-sit-desistiu, .cap-sit-nao_valida, .cap-sit-exclusividade_outra {
+  background: #f6f4f2; color: var(--ink-3);
+}
+.cap-faltando { font-size: 12px; color: var(--ink-3); cursor: help; }
+.cap-editar {
+  margin-top: auto; width: 100%; background: var(--accent); border: 1px solid var(--accent);
+  border-radius: 10px; padding: 10px 14px; font: inherit; font-size: 14px; font-weight: 600;
+  color: #fff; cursor: pointer;
+}
+.cap-editar:hover { filter: brightness(1.1); }
+.cap-modal-fundo {
+  position: fixed; inset: 0; z-index: 50; background: rgba(20, 16, 12, .45);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 16px; overflow-y: auto;
+}
+.cap-modal { width: 100%; max-width: 760px; margin: 0; box-shadow: 0 18px 50px rgba(0,0,0,.18); }
+.cap-modal-topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cap-fechar {
+  background: none; border: none; font-size: 26px; line-height: 1; color: var(--ink-3);
+  cursor: pointer; padding: 0 4px;
+}
+.cap-fechar:hover { color: var(--ink); }
+.cap-cancelar {
+  background: none; border: 1px solid var(--line); border-radius: 10px; padding: 10px 18px;
+  font: inherit; font-size: 14px; color: var(--ink-2); cursor: pointer;
+}
+.cap-galeria { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px dashed var(--line); }
+.cap-galeria-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.cap-galeria-titulo { font-size: 12px; font-weight: 600; color: var(--ink-2); }
+.cap-galeria-dica { font-size: 12px; color: var(--ink-3); }
+.cap-galeria-erro { margin-bottom: 10px; }
+.cap-galeria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+.cap-foto {
+  position: relative; aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden;
+  background: var(--surface-2, #f4f1ed); border: 1px solid var(--line);
+  cursor: grab; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  touch-action: manipulation; transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.cap-foto:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cap-foto img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.cap-foto-arrastando {
+  cursor: grabbing; transform: scale(1.06); z-index: 2; opacity: .9;
+  box-shadow: 0 10px 26px rgba(0,0,0,.22); outline: 2px solid var(--accent);
+}
+.cap-foto-capa {
+  position: absolute; left: 6px; bottom: 6px; background: var(--accent); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; pointer-events: none;
+}
+.cap-foto-x {
+  position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid #fff; background: rgba(20, 16, 12, .72); color: #fff;
+  font-size: 17px; line-height: 1; display: grid; place-items: center; padding: 0 0 2px;
+  cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.cap-foto-x:hover, .cap-foto-x:focus-visible { background: #b42318; }
+.cap-foto-x::before { content: ""; position: absolute; inset: -9px; }
+.cap-foto-mais {
+  display: grid; place-items: center; border: 2px dashed var(--line); background: #fff;
+  color: var(--accent); font: inherit; font-size: 38px; font-weight: 300; cursor: pointer; padding: 0;
+}
+.cap-foto-mais:hover, .cap-foto-mais:focus-visible { border-color: var(--accent); background: #f1f8f3; }
+.cap-foto-carregando {
+  display: grid; place-items: center; font-size: 12px; color: var(--ink-3); cursor: default;
+}
+@media (max-width: 600px) {
+  .cap-modal-fundo { padding: 0; }
+  .cap-modal { min-height: 100%; border-radius: 0; }
+}

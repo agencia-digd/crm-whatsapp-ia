@@ -1,0 +1,47 @@
+/* Nutrição: só o que é dela (a fila de cada marco e o selo de somente leitura).
+   O resto da página usa o CSS do remarketing, como as outras automações. */
+
+.fila {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+.filaValor {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-1);
+  line-height: 1.1;
+}
+.filaRotulo {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.filaSemDado {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.congelado {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #7a4d00;
+  background: #fbf1e0;
+  border: 1px solid #f0e0bf;
+  border-radius: 8px;
+  padding: 6px 9px;
+  margin-bottom: 8px;
+}
+.somenteLeitura {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--line-soft);
+  padding: 1px 8px;
+  border-radius: 99px;
+}

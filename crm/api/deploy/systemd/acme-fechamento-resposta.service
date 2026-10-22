@@ -1,0 +1,7 @@
+[Unit]
+Description=Acme · avisa a Dona quando a Pessoa12 ou a Pessoa11 responderem o fechamento de agosto
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/acme-fechamento-resposta

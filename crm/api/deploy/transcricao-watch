@@ -1,0 +1,178 @@
+#!/usr/bin/env python3
+"""transcricao-watch — avisa a Dona se áudio de lead voltar a ficar mudo.
+
+POR QUE EXISTE
+
+Até 25/08/2026 a transcrição só rodava dentro do Inspector, 1x por dia, com
+teto de 50 áudios por rodada. Chegam ~130 por dia. A fila crescia sozinha, o
+excedente passava da janela de 48h e nunca mais era olhado — 8.308 áudios
+acumulados, metade da base, sem ninguém perceber.
+
+O custo disso não é técnico: quando a corretora responde por áudio, a Pessoa não
+sabe o que a pessoa disse, e a análise de conversa mede errado. Em agosto, a
+Pessoa10 mandou 692 áudios contra 393 textos — a maior parte do que ela fala.
+
+Este check olha o RESULTADO (áudio recente segue mudo?), não o processo. Timer
+verde não prova transcrição acontecendo — foi essa a lição do [[corretor-falha-watch]].
+
+DOIS SINTOMAS
+
+  1. FILA PARADA — há áudio pendente e nada foi transcrito nas últimas horas.
+     É o timer morto, o token vencido, o rate limit não cedendo.
+  2. FILA CRESCENDO — entrou mais áudio do que saiu, dia após dia. O tick roda,
+     mas não dá conta do volume; sem isso a fila volta a acumular calada.
+  3. RISCO DE PERDA — áudio pendente há mais de 3 dias. A mídia da Cloud API
+     expira por volta dos 9 (23 amostras testadas em 26/08/2026, todas mortas
+     depois de 10), e o backfill só tenta dentro de 10 dias: sem este aviso, o
+     que atrasa demais sai da janela e some SEM ERRO NENHUM. É o alerta que
+     precisa chegar com folga pra alguém agir — os outros dois avisam depois.
+
+Avisa uma vez por sintoma e só volta a avisar quando normaliza e quebra de novo
+— alerta repetido a cada 20 min vira alerta ignorado.
+"""
+from __future__ import annotations
+
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+
+import psycopg
+
+DSN = os.getenv("TRANSCRICAO_WATCH_DSN",
+                "postgresql://user:CHANGE_ME@localhost:5432/copiloto")
+NOTIFY = os.getenv("TRANSCRICAO_WATCH_NOTIFY", "http://127.0.0.1:8099/api/notify")
+ESTADO = os.getenv("TRANSCRICAO_WATCH_ESTADO", "/var/lib/assistente/transcricao-watch.json")
+ENV_NOTIFY = "/opt/telegram-claude/.env"
+
+# Quanto tempo sem NENHUMA transcrição, havendo fila, até reclamar. O tick roda
+# de 15 em 15 min; 3h dá folga pra rate limit da Meta ceder sem alarme falso.
+HORAS_SEM_PROGRESSO = 3
+# Janela que o backfill REALMENTE tenta (TRANSCRICAO_JANELA_DIAS em
+# backfill_transcricoes.py). Áudio mais velho que isso não é fila: é cadáver.
+# A mídia já expirou na Meta e o backfill nem consulta — contá-lo como trabalho
+# pendente foi o que gerou o falso "transcrição parou" de 28/08/2026, com 79
+# pendentes de 11 dias atrás e 100% dos áudios recentes transcritos.
+JANELA_BACKFILL_DIAS = 10
+# Fila de áudio recente (7 dias) acima disso = não estamos dando conta do fluxo.
+FILA_ALTA = 400
+# RISCO DE PERDA: mídia da Cloud API expira em ~9 dias (23 amostras testadas em
+# 26/08/2026, todas mortas depois de 10). Áudio que passa deste limite ainda
+# pendente está a poucos dias de virar cadáver — e a janela do backfill vai
+# simplesmente parar de tentar, sem barulho. Este é o alerta que precisa chegar
+# ANTES da perda, com folga pra alguém agir.
+DIAS_RISCO = 3
+
+
+def carrega() -> dict:
+    try:
+        with open(ESTADO) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def salva(estado: dict) -> None:
+    os.makedirs(os.path.dirname(ESTADO), exist_ok=True)
+    tmp = ESTADO + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(estado, f)
+    os.replace(tmp, ESTADO)
+
+
+def token() -> str:
+    with open(ENV_NOTIFY) as f:
+        for linha in f:
+            if linha.startswith("NOTIFY_API_TOKEN="):
+                return linha.split("=", 1)[1].strip()
+    raise SystemExit("NOTIFY_API_TOKEN ausente")
+
+
+def avisa(task_id: str, texto: str) -> bool:
+    corpo = json.dumps({"task_id": task_id, "text": texto}).encode()
+    req = urllib.request.Request(
+        NOTIFY, data=corpo,
+        headers={"Authorization": "Bearer " + token(),
+                 "Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200
+    except urllib.error.URLError as e:
+        print(f"falha ao avisar: {e}", file=sys.stderr)
+        return False
+
+
+def main() -> int:
+    with psycopg.connect(DSN, connect_timeout=10) as con, con.cursor() as cur:
+        cur.execute("""
+            SELECT
+              count(*) FILTER (WHERE transcricao_status IN ('pendente','em_progresso')
+                               AND timestamp_evolution > now() - interval '7 days'),
+              count(*) FILTER (WHERE transcricao_status = 'concluida'
+                               AND transcricao_em > now() - interval '%s hours'),
+              count(*) FILTER (WHERE transcricao_status IN ('pendente','em_progresso')),
+              count(*) FILTER (WHERE transcricao_status IN ('pendente','em_progresso')
+                               AND timestamp_evolution < now() - interval '%s days'
+                               AND timestamp_evolution > now() - interval '%s days'),
+              count(*) FILTER (WHERE transcricao_status IN ('pendente','em_progresso')
+                               AND timestamp_evolution > now() - interval '%s days')
+              FROM mensagens_whatsapp WHERE tipo_mensagem = 'audio'
+        """ % (HORAS_SEM_PROGRESSO, DIAS_RISCO,
+               JANELA_BACKFILL_DIAS, JANELA_BACKFILL_DIAS))
+        (fila_recente, feitos_recente, fila_total,
+         em_risco, fila_acionavel) = cur.fetchone()
+
+    estado = carrega()
+    # "Parado" é sobre trabalho que AINDA DÁ PRA FAZER. Fila fora da janela do
+    # backfill não anda por design, então não é sintoma de nada.
+    parado = fila_acionavel > 0 and feitos_recente == 0
+    cheia = fila_recente > FILA_ALTA
+
+    if parado and not estado.get("parado"):
+        avisa("transcricao-parada",
+              f"🔇 A transcrição de áudio parou.\n\n"
+              f"{fila_acionavel} áudios na fila e nenhum transcrito nas últimas "
+              f"{HORAS_SEM_PROGRESSO}h.\n\n"
+              "Enquanto isso, áudio de lead chega e ninguém lê — foi assim que "
+              "somaram 8 mil em agosto.\n\n"
+              "Checar: systemctl status copiloto-transcricao-backfill.timer · "
+              "journalctl -u copiloto-transcricao-backfill -n 40")
+    elif not parado and estado.get("parado"):
+        avisa("transcricao-voltou",
+              f"✅ A transcrição voltou a andar ({feitos_recente} nas últimas "
+              f"{HORAS_SEM_PROGRESSO}h).")
+
+    arriscado = em_risco > 0
+    if arriscado and not estado.get("arriscado"):
+        avisa("transcricao-risco-perda",
+              f"⏳ {em_risco} áudio(s) de lead a poucos dias de sumir.\n\n"
+              f"Estão sem transcrição há mais de {DIAS_RISCO} dias, e a mídia da "
+              "Meta expira por volta dos 9 — depois disso não volta, foi o que "
+              "aconteceu com 1.950 áudios de agosto.\n\n"
+              "Checar: systemctl status copiloto-transcricao-backfill.timer · "
+              "cat /var/lib/assistente/transcricao-backoff")
+    elif not arriscado and estado.get("arriscado"):
+        avisa("transcricao-risco-ok", "✅ Nenhum áudio em risco de expirar.")
+
+    if cheia and not estado.get("cheia"):
+        avisa("transcricao-fila-alta",
+              f"📈 A fila de transcrição está crescendo: {fila_recente} áudios "
+              f"dos últimos 7 dias ainda mudos.\n\n"
+              "O tick está rodando, mas não dá conta do fluxo — vale aumentar o "
+              "lote ou a frequência.")
+    elif not cheia and estado.get("cheia"):
+        avisa("transcricao-fila-ok", f"✅ Fila de transcrição normalizou "
+                                     f"({fila_recente} áudios recentes na fila).")
+
+    salva({"parado": parado, "cheia": cheia, "arriscado": arriscado})
+    print(f"fila_acionavel={fila_acionavel} fila_recente={fila_recente} "
+          f"fila_total={fila_total} "
+          f"feitos_{HORAS_SEM_PROGRESSO}h={feitos_recente} em_risco={em_risco} "
+          f"parado={parado} cheia={cheia} arriscado={arriscado}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

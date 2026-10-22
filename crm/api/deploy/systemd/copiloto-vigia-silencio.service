@@ -1,0 +1,11 @@
+[Unit]
+Description=Copiloto — vigia do silêncio (lead de anúncio 30 min sem nenhuma mensagem → Telegram da Dona)
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/crm
+EnvironmentFile=/opt/crm/.env
+# Só LÊ o banco e avisa a Dona. Nunca manda mensagem pra lead.
+ExecStart=/opt/crm/.venv/bin/python scripts/vigia_silencio.py

@@ -1,0 +1,10 @@
+[Unit]
+Description=Checa a cada 10 min se as corretoras responderam o pedido de fechamento (01/09/2026)
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
