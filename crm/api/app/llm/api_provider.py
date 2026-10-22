@@ -65,7 +65,7 @@ class AnthropicApiProvider:
         self,
         api_key: str,
         *,
-        model: str = "claude-sonnet-4-6",
+        model: str = "claude-sonnet-5-5",
         base_url: str = BASE_URL,
         timeout: int = 120,
         temperature: float = 0.2,

@@ -14,6 +14,13 @@ from __future__ import annotations
 PRECOS_POR_MILHAO: tuple[tuple[str, float, float], ...] = (
     ("claude-haiku-4-5", 1.0, 5.0),
     ("claude-sonnet-4", 3.0, 15.0),
+    # Tabela da Anthropic conferida em 22/10/2026 (platform.claude.com/docs/en/about-claude/pricing).
+    # Haiku 5.5 acima de 100 mil tokens de prompt custa US$ 0,50 / 2,50; aqui vale a faixa até 100 mil
+    # (as conversas lidas ficam muito abaixo disso).
+    ("claude-haiku-5-5", 0.10, 0.50),
+    ("claude-sonnet-5-5", 2.0, 10.0),
+    ("claude-opus-5-5", 4.0, 20.0),
+    ("claude-fable-5-1", 10.0, 50.0),
 )
 
 

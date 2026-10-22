@@ -377,7 +377,13 @@ def _baixar_audio(mensagem_id: uuid.UUID) -> tuple[bytes, str, str | None]:
     media_id, mime = _cloud_media_id_e_mime(raw_payload, meta)
     from app.api.cloud_corretora_a import INSTANCE as CLOUD_INSTANCE
 
-    if media_id or instance == CLOUD_INSTANCE:
+    # Payload no formato Evolution (data.key + data.message) nunca é Cloud, mesmo
+    # com instance `acme_corretora_a`: desde 20/10 a Pessoa12 tem também uma sessão
+    # Evolution gravando nessa instance, e esses áudios caíam aqui sem media_id.
+    _data = (raw_payload or {}).get("data") if isinstance(raw_payload, dict) else None
+    _formato_evolution = isinstance(_data, dict) and isinstance(_data.get("key"), dict)
+
+    if media_id or (instance == CLOUD_INSTANCE and not _formato_evolution):
         from app.api import cloud_corretora_a
 
         mime_type = mime or "audio/ogg; codecs=opus"

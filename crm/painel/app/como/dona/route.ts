@@ -6,12 +6,11 @@ export const dynamic = "force-dynamic";
 // Link de 1 toque pra Dona virar admin mesmo com cookie de corretora
 // grudado no navegador (link mágico da Pessoa10/Pessoa11/Pessoa12).
 // URL: /como/dona?k=<segredo>
-const SECRET =
-  process.env.DONA_SWITCH_KEY || "CHANGE_ME";
+const SECRET = process.env.DONA_SWITCH_KEY || "";
 
 export async function GET(req: NextRequest) {
   const k = req.nextUrl.searchParams.get("k") || "";
-  if (k !== SECRET) {
+  if (!SECRET || k !== SECRET) {
     return new NextResponse("link inválido", { status: 403 });
   }
 

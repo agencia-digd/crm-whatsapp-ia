@@ -150,6 +150,11 @@ async def evolution_webhook_assistente(
     # Auditoria — instance vem do payload (Evolution v2: {"instance": "acme_corretora_a", ...})
     # settings.evolution_assistente_instance serve apenas pro routing Assistente (send_text), nunca pra atribuição
     instance_name: str | None = payload.get("instance") or None
+    if instance_name and instance_name.startswith("acme_") and not settings.evolution_acme_ativa:
+        # Evolution da Acme está aposentada (22/10): a sessão `acme_corretora_a` ficou
+        # conectada no celular da Pessoa e gravava as conversas dela como se fossem da Pessoa12.
+        log.info("webhook_evolution_acme_ignorado", instance=instance_name)
+        return Response(status_code=200)
     if not instance_name:
         log.error("webhook_payload_sem_instance", payload_keys=list(payload.keys()))
     else:

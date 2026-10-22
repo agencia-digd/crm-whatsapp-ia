@@ -1028,6 +1028,25 @@ _WARNING_SEM_ATIVIDADE_WHATSAPP = (
 )
 
 
+def _bloco_leitura_ia() -> str:
+    """Mensagem do briefing com as conversas do dia que a IA leu e viu fechando."""
+    from app.services import leitura_ia
+
+    achados = leitura_ia.procurar(horas=24)
+    fortes = [a for a in achados if a.forca == "forte"]
+    if not fortes:
+        return ""
+    linhas = [f"🔥 *{len(fortes)} conversa(s) que a IA leu hoje e viu fechando negócio*", ""]
+    for a in fortes[:8]:
+        linhas.append(f"• *{a.nome or a.telefone[-4:]}* — está em _{a.etapa or 'sem card'}_")
+        if a.trechos and a.trechos[0]:
+            linhas.append(f'   "{a.trechos[0]}"')
+    if len(fortes) > 8:
+        linhas.append(f"\n… e mais {len(fortes) - 8}.")
+    linhas.append("\nSe alguma está fechando de verdade, o card precisa subir.")
+    return "\n".join(linhas)
+
+
 def run_daily_briefing(dry_run: bool = True, force_mini: bool = False) -> dict[str, Any]:
     """
     Executa o briefing diário para Dona em 1-N mensagens Telegram.
@@ -1139,6 +1158,17 @@ def run_daily_briefing(dry_run: bool = True, force_mini: bool = False) -> dict[s
         else:
             msg1 = _format_msg1_metrics(context, dia_fraco=False)
             msgs_rich, token_stats = _format_briefing_rich(context)
+
+    # ── Step 5b: conversas que a IA leu e acha que estão fechando ─────────────
+    # Desde 22/10: o briefing da noite lê as conversas do dia com o Haiku 5.5.
+    # Falha aqui nunca derruba o briefing: sai sem o bloco.
+    if scenario != "cenario_1_tudo_zerado":
+        try:
+            _bloco_ia = _bloco_leitura_ia()
+            if _bloco_ia:
+                msgs_rich = list(msgs_rich) + [_bloco_ia]
+        except Exception as exc:  # noqa: BLE001
+            log.warning("assistente_leitura_ia_falhou", erro=str(exc)[:120])
 
     # ── Step 6: Send (if not dry_run) ─────────────────────────────────────────
     dona_status = "—"

@@ -9,8 +9,8 @@ Só colunas NOVAS e nulas, `IF NOT EXISTS`: publicar não muda nenhuma linha.
 
 from alembic import op
 
-revision = "0092"
-down_revision = "0091"
+revision = "0092b"
+down_revision = "0092"
 branch_labels = None
 depends_on = None
 

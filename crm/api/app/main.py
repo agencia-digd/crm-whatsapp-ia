@@ -21,7 +21,7 @@ def build_app() -> AgentOS:
     agente_assistente_v0 = Agent(
         name="agente-assistente-v0",
         id="agente-assistente-v0",
-        model=Claude(id="claude-haiku-4-5"),
+        model=Claude(id="claude-haiku-5-5"),
         db=db,
         tools=[TelegramTool()],
         description="Quando chamado, mande uma mensagem amigável pra Dona via TelegramTool.",

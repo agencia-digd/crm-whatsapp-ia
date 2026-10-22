@@ -10,7 +10,7 @@ preço cadastrado (ou chamada anterior a esta migration): nunca vira 0.
 Migration 100% ADITIVA: uma coluna nullable, sem default, sem backfill.
 
 Revision ID: 0093
-Revises: 0092
+Revises: 0092b
 Create Date: 2026-10-22
 """
 from typing import Sequence, Union
@@ -19,7 +19,7 @@ import sqlalchemy as sa
 from alembic import op
 
 revision: str = "0093"
-down_revision: Union[str, None] = "0092"
+down_revision: Union[str, None] = "0092b"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

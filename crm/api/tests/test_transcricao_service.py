@@ -329,6 +329,31 @@ def test_baixar_audio_evolution_quando_payload_nao_e_cloud() -> None:
     mock_evo.return_value._post.assert_called_once()
 
 
+def test_baixar_audio_evolution_em_instance_da_corretor_vai_pro_evolution() -> None:
+    """Desde 20/10 a Pessoa12 tem sessão Evolution gravando em `acme_corretora_a`: payload
+    no formato Evolution (sem media_id) não pode cair no ramo Cloud."""
+    from app.services import transcricao_service as svc
+
+    uid = _insert_msg(
+        f"{_MSG_PREFIX}evo-corretor",
+        tipo="audio",
+        transcricao_status="pendente",
+        instance="acme_corretora_a",
+        raw_payload=_payload_evolution(),
+    )
+
+    import base64
+
+    with patch("app.api.cloud_corretora_a.baixar_media_cloud") as mock_cloud, \
+         patch.object(svc, "EvolutionClient") as mock_evo:
+        mock_evo.return_value._post.return_value = {"base64": base64.b64encode(b"AUDIOGI").decode()}
+        audio_bytes, _mime, erro = svc._baixar_audio(uid)
+
+    assert erro is None
+    assert audio_bytes == b"AUDIOGI"
+    mock_cloud.assert_not_called()
+
+
 def test_baixar_audio_cloud_expirado_reporta_erro() -> None:
     """Mídia da Cloud que já expirou: erro claro, sem cair no Evolution."""
     from app.services import transcricao_service as svc

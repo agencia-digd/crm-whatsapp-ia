@@ -138,7 +138,7 @@ e o do aviso. Sem linha gravada no banco vale o `.env`; as chaves do disparo em 
 **falham fechadas** (sem linha, desligado).
 
 ## Mensagens, áudios e a leitura do copiloto
-`mensagens_evolution_service.py`, `transcricao_service.py`, `transcricao_whisper_mac.py`, `sinal_negocio.py`, `anti_ghosting.py`, `vigia_silencio.py`
+`mensagens_evolution_service.py`, `transcricao_service.py`, `transcricao_whisper_mac.py`, `leitura_ia.py`, `sinal_negocio.py`, `anti_ghosting.py`, `vigia_silencio.py`
 
 **Onde as mensagens ficam.** Toda mensagem que chega ou sai do WhatsApp é gravada no Postgres, na
 tabela `mensagens_whatsapp` (texto, tipo, quem mandou, horário, telefone com sufixo-8 para casar com
@@ -147,20 +147,28 @@ evento recebido): se o repasse ao CRM demora e o resultado é incerto, o evento 
 **quarentena** em vez de ser refeito, para não duplicar mensagem. Um vigia avisa quando há algo preso.
 
 **Áudios.** O áudio chega como mídia e fica com `transcricao_status = pendente`. Um timer
-(`transcricao-backfill`) baixa o arquivo (Graph da Meta ou Evolution, conforme o formato do payload) e
+(`transcricao-backfill`) baixa o arquivo (Graph da Meta ou Evolution, escolhido pelo **formato do payload** da própria mensagem, e não pelo nome da instância) e
 transcreve com **Whisper large-v3** rodando num Mac mini (sem chave e sem limite), com **Gemini** como
 reserva. O texto vai para a coluna `transcricao` da mesma mensagem; assim o áudio entra na leitura
 como se fosse texto. Se a Graph pede para ir mais devagar, o áudio volta para a fila em vez de virar
 erro. Outro timer (`transcricao-watch`) alerta se a fila trava.
 
 **O que o copiloto lê sozinho, de tempos em tempos** (nenhuma dessas rotinas move card):
-- **Sinal de negócio** (`sinal_negocio`): varre as conversas dos últimos 14 dias atrás de quem está
-  *fechando* (documentação, crédito aprovado, cartório, sinal, assinatura) e que não está no card
-  certo. É heurística por vocabulário, não IA. Avisa uma vez por conversa no Telegram da dona do
-  negócio ("o card precisa subir").
+- **Leitura de conversa por IA** (`leitura_ia`): duas vezes por dia (aviso) e no resumo da noite, um
+  modelo pequeno (Haiku 5.5) lê as últimas 40 mensagens de cada conversa ativa nas últimas 24h e diz
+  se o cliente está *fechando* (documentação entregue, crédito em análise ou aprovado, cartório, sinal,
+  reserva, assinatura, data marcada com banco) ou só interessado (preço, visita, simulação). Só entram
+  conversas que têm card (não há o que subir sem card), de fora da equipe, com confiança alta no aviso;
+  confiança média fica só para o painel. Dono que combina preço de anúncio ainda não é fechamento.
+  Não move card nem fala com o cliente: avisa no Telegram ("o card precisa subir") e abre o resumo da
+  noite com a lista. Se a IA falha, o resumo sai sem esse bloco. Cada chamada grava custo e latência
+  (`llm_chamadas`, com tabela de preços em `llm/precos.py`).
+- **Sinal de negócio por vocabulário** (`sinal_negocio`): a versão anterior, uma lista de palavras.
+  Continua no código (a auditoria do funil ainda a usa), mas deixou de mandar aviso: na amostra de um
+  dia ela acusou 5 conversas que eram só simulação, e a IA derrubou as 5.
 - **Anti-ghosting** (`anti_ghosting`): quem estava conversando e sumiu com a janela de 24h ainda
   aberta recebe até 5 toques de texto livre (1h30, 3h, 6h, 10h e 15h), de graça e sem template. Para no
-  quinto, que é a saída digna. Nasce **desligado** (`anti_ghosting_ativo`).
+  quinto, que é a saída digna. Nasce **desligado** (`anti_ghosting_ativo`) e assim deve ficar: as corretoras não gostaram de mensagem automática em conversa que elas já tocavam.
 - **Vigia do silêncio** (`vigia_silencio`): lead de anúncio com mais de 30 min e nenhuma mensagem de
   saída gera alerta. Cobre qualquer causa (intake desligado, linha sem template, roleta vazia).
 - **Visita**: lembrete no dia anterior, detecção de no-show e de pendência da corretora.

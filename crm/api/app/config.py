@@ -40,18 +40,19 @@ class Settings(BaseSettings):
     # o payload do webhook não trouxe o campo. Leitura apenas.
     evolution_db_url: str = "postgresql+psycopg://user:CHANGE_ME@localhost:5432/evolution_db"
 
-    model_classifier: str = "claude-haiku-4-5-20251001"
-    model_analyzer: str = "claude-sonnet-4-6"
+    evolution_acme_ativa: bool = False  # Evolution da Acme aposentada em 22/10
+    model_classifier: str = "claude-haiku-5-5"
+    model_analyzer: str = "claude-sonnet-5-5"
     # Assistente (servico='api'): Haiku no próprio `claude -p` da assinatura — sem API paga e sem
     # Codex (morto por limite). Inspector e sombra continuam no model_analyzer.
-    model_assistente: str = "claude-haiku-4-5-20251001"
+    model_assistente: str = "claude-haiku-5-5"
     # Teto POR CHAMADA. O pior caso da tela = roteador x2 (retry) + resposta = 3 x 45 = 135 s,
     # e a tela (acme-painel/app/api/assistente/route.ts) espera 150 s.
     assistente_cli_timeout: int = 45
     # Sombra/Aprendiz (timer copiloto-shadow): `claude -p` da assinatura, SEM reserva Codex
     # (Codex fora por limite; a reserva só dobrava os erros). Juiz do placar usa Haiku.
-    model_shadow: str = "claude-sonnet-4-6"
-    model_juiz: str = "claude-haiku-4-5-20251001"
+    model_shadow: str = "claude-sonnet-5-5"
+    model_juiz: str = "claude-haiku-5-5"
     shadow_cli_timeout: int = 120
     juiz_cli_timeout: int = 60
 
